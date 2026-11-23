@@ -1,0 +1,6 @@
+# Mac and editor files
+.DS_Store
+.claude/
+
+# Working files that don't belong on the live site
+_*
