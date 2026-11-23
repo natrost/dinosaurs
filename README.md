@@ -1,4 +1,4 @@
-# Dino Time Machine (prototype)
+# The Dino Landing
 
 A dinosaur site with a time slider, a timeline, and a page for every dinosaur.
 Plain HTML, CSS and JavaScript: no build step.
@@ -12,8 +12,11 @@ then open http://localhost:8766
 
 ## Where things are
 - `js/data.js`: **all the content.** Periods, the family tree, and every dinosaur. Add a dinosaur by copying an entry.
-- `css/style.css`: the look. The colors and fonts at the top (`:root`) are where Figma design tokens will go.
-- `index.html` + `js/home.js`: home page (time machine, timeline, all dinosaurs).
+- `css/tokens.css`: **colors and fonts for every page.** Figma values go here. (Period colors are also in `js/data.js`.)
+- `css/home.css`, `css/style.css`: the homepage, and all the other pages.
+- `images/art/trex-pencil.png`: the T. rex on the homepage. Replace it with another transparent drawing of the same shape (1227 × 661).
+- `index.html` + `js/dig.js`, `js/color-in.js`, `js/mix.js`: homepage (the dig, coloring in, mixed-up bones). `js/paths.js` holds the outlines it needs.
+- `timemachine.html` + `js/timemachine.js`: time machine, timeline, all dinosaurs.
 - `dino.html` + `js/dino.js`: the detail page, e.g. `dino.html?id=triceratops`.
 - `compare.html` + `js/compare.js`: compare two dinosaurs, e.g. `compare.html?a=tyrannosaurus&b=stegosaurus`.
 - `js/size.js`: the people in size charts and the height box.

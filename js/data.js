@@ -6,15 +6,15 @@
 
 const PERIODS = [
   {
-    id: "triassic", name: "Triassic", start: 251.9, end: 201.4, color: "#d9733b",
+    id: "triassic", name: "Triassic", start: 251.9, end: 201.4, color: "#e87350",
     blurb: "All the land was joined into one giant supercontinent called Pangaea. It was hot and dry. Dinosaurs were brand new, and most were small."
   },
   {
-    id: "jurassic", name: "Jurassic", start: 201.4, end: 145, color: "#4a9a62",
+    id: "jurassic", name: "Jurassic", start: 201.4, end: 145, color: "#7aa557",
     blurb: "Pangaea was splitting apart. The world was warm and wet, with forests of ferns and conifer trees. Giant long-necked sauropods roamed."
   },
   {
-    id: "cretaceous", name: "Cretaceous", start: 145, end: 66, color: "#3d7cc0",
+    id: "cretaceous", name: "Cretaceous", start: 145, end: 66, color: "#f0a62f",
     blurb: "The continents drifted toward where they are today and the first flowers bloomed. It ended when a huge asteroid hit Earth 66 million years ago."
   }
 ];
@@ -31,7 +31,7 @@ const FAMILY_TREE = {
       ]
     },
     {
-      id: "ornithischia", name: "Ornithischians", note: "\"bird-hipped\" plant-eaters (funny enough, not related to birds)", children: [
+      id: "ornithischia", name: "Ornithischians", note: "\"bird-hipped\" plant-eaters. Oddly, birds came from the other branch", children: [
         { id: "thyreophora", name: "Armored dinosaurs", note: "plates, spikes and armor" },
         { id: "ornithopoda", name: "Ornithopods", note: "beaked plant-eaters, including duck-bills" },
         { id: "marginocephalia", name: "Horns, frills & domes", note: "horned and dome-headed dinosaurs" }
@@ -41,10 +41,10 @@ const FAMILY_TREE = {
 };
 
 const DIETS = {
-  herbivore: { label: "Plant-eater", icon: "🌿" },
-  carnivore: { label: "Meat-eater", icon: "🍖" },
-  piscivore: { label: "Fish-eater", icon: "🐟" },
-  omnivore:  { label: "Plants & meat", icon: "🍽️" }
+  herbivore: { label: "Plant-eater" },
+  carnivore: { label: "Meat-eater" },
+  piscivore: { label: "Fish-eater" },
+  omnivore:  { label: "Plants & meat" }
 };
 
 // body: which placeholder silhouette to draw — "biped", "longneck" or "quad"

@@ -62,7 +62,7 @@ function renderSize(d) {
 
 // ── The page ─────────────────────────────────────────────────
 function renderPage(d) {
-  document.title = `${d.name} · Dino Time Machine`;
+  document.title = `${d.name} · The Dino Landing`;
   const p = periodOf(d);
   const diet = DIETS[d.diet];
 
@@ -75,16 +75,14 @@ function renderPage(d) {
   const prev = ordered[i - 1], next = ordered[i + 1];
 
   page.innerHTML = `
-    <nav class="crumbs"><a href="index.html">← Time machine</a></nav>
-
-    <section class="dino-hero panel">
-      <div class="art art-big" style="--tint:${p.color}">${silhouetteSVG(d, "rgba(255,255,255,.92)")}</div>
-      <div>
-        <h1>${d.name}</h1>
-        <p class="say">Say it: <strong>${d.say}</strong></p>
-        <p class="meaning">The name means <strong>"${d.meaning}"</strong></p>
-        <div class="chips">${periodChip(p)}${dietChip(d)}</div>
-        <p class="lived">Lived about <strong>${d.start} to ${d.end} million years ago</strong></p>
+    <section class="dino-hero bleed" style="--tint:${p.color}">
+      <nav class="crumbs"><a href="timemachine.html">← Time machine</a></nav>
+      <h1 class="giant" data-period="${p.id}" aria-label="${d.name}"><span aria-hidden="true">${d.name}</span></h1>
+      <div class="hero-art">${silhouetteSVG(d, "var(--ink)")}</div>
+      <div class="hero-words">
+        <p class="say">${d.say}</p>
+        <p class="meaning">It means “${d.meaning}”.</p>
+        <p class="lived">${p.name}, about ${d.start} to ${d.end} million years ago</p>
       </div>
     </section>
 
@@ -92,7 +90,7 @@ function renderPage(d) {
       <div class="fact"><span class="fact-label">Length</span><span class="fact-value">${fmtLength(d.lengthM)}</span></div>
       <div class="fact"><span class="fact-label">Weight</span><span class="fact-value">${fmtWeight(d.weightKg)}</span>
         <span class="fact-note">${weightCompare(d.weightKg)}</span></div>
-      <div class="fact"><span class="fact-label">Ate</span><span class="fact-value">${diet.icon} ${diet.label}</span>
+      <div class="fact"><span class="fact-label">Ate</span><span class="fact-value">${diet.label}</span>
         ${d.dietNote ? `<span class="fact-note">${d.dietNote}</span>` : ""}</div>
       <div class="fact"><span class="fact-label">Fossils found in</span><span class="fact-value">${d.found}</span></div>
     </section>
@@ -123,7 +121,7 @@ function renderPage(d) {
       ${neighbors.length
         ? `<div class="grid">${neighbors.map(x => {
             const shared = x.continents.filter(c => d.continents.includes(c));
-            const note = shared.length ? `🤝 Also lived in ${shared.join(" & ")}` : `🌍 Lived in ${x.continents.join(" & ")}`;
+            const note = shared.length ? `Also lived in ${shared.join(" & ")}` : `Lived in ${x.continents.join(" & ")}`;
             return dinoCard(x, `<p class="small muted">${note}</p>`);
           }).join("")}</div>`
         : `<p>None of the other dinosaurs on our site lived at the same time as ${d.name}. As we add more dinosaurs, its neighbors will show up here.</p>`}
@@ -153,13 +151,15 @@ function renderPage(d) {
   });
   renderSize(d);
   startFossilMap(d);
+  fitGiant();
+  document.fonts.ready.then(fitGiant);
 
   startHeightForm(() => renderSize(d));
 }
 
 // ── Start ────────────────────────────────────────────────────
 if (!dino) {
-  page.innerHTML = `<section class="panel"><h1>Dinosaur not found</h1><p><a href="index.html">Back to the time machine</a></p></section>`;
+  page.innerHTML = `<section class="panel"><h1>Dinosaur not found</h1><p><a href="index.html">Back to the dig</a></p></section>`;
 } else {
   renderPage(dino);
 }

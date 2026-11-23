@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Time machine · The Dino Landing</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">The Dino Landing</a>
+    <nav class="site-nav"><a href="timemachine.html">Time machine</a><a href="compare.html">Compare</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Travel back in time to meet the dinosaurs</h1>
+      <p>Dinosaurs lived for more than 160 million years. Slide through time to see who was alive, and who never met.</p>
+    </section>
+
+    <section class="machine panel" aria-labelledby="machine-title">
+      <h2 id="machine-title">Time machine</h2>
+      <div class="readout">
+        <span class="readout-ma"><span id="ma">152</span> million years ago</span>
+        <span id="period-chip"></span>
+      </div>
+      <input id="slider" class="slider" type="range" min="0" max="186" step="1" value="100"
+             aria-label="Move through time">
+      <div class="slider-ends"><span>Older</span><span>Newer</span></div>
+      <div class="jump">
+        Jump to:
+        <button data-ma="230">Triassic</button>
+        <button data-ma="152">Jurassic</button>
+        <button data-ma="67">Cretaceous</button>
+      </div>
+      <p id="period-blurb" class="blurb"></p>
+      <h3 id="alive-title"></h3>
+      <div id="alive" class="grid"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="tl-title">
+      <h2 id="tl-title">When did they live?</h2>
+      <p class="muted">Each bar shows when a dinosaur lived. Bars that line up lived at the same time. Click one to learn more.</p>
+      <div id="timeline" class="timeline"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="all-title">
+      <h2 id="all-title">Meet the dinosaurs</h2>
+      <div id="all" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">Dates and sizes are scientists' best estimates and change as new fossils are found. <a href="credits.html">Credits</a></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/silhouettes.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/timemachine.js"></script>
+</body>
+</html>

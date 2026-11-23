@@ -1,0 +1,16 @@
+/* ── The look of the whole site starts here. Swap these for the Figma values. ── */
+@font-face { font-family: "Archivo"; src: url("../fonts/archivo.woff2") format("woff2"); font-weight: 400 900; font-stretch: 62% 125%; font-display: swap; }
+@font-face { font-family: "Reenie Beanie"; src: url("../fonts/reenie-beanie.woff2") format("woff2"); font-display: swap; }
+
+:root {
+  --ink: #1f322c;       /* text, silhouettes, dark sections */
+  --ivory: #f4f0e6;     /* paper */
+  --sand: #e9d6b4;      /* quiet panels */
+  --sky: #a5d3cf;
+  --pink: #f3b6a0;
+  --amber: #f0a62f;     /* Cretaceous (also set in js/data.js) */
+  --moss: #7aa557;      /* Jurassic */
+  --clay: #e87350;      /* Triassic */
+  --body: "Archivo", system-ui, sans-serif;
+  --pen: "Reenie Beanie", cursive;
+}

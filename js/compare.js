@@ -109,7 +109,7 @@ function statHTML(title, key, fmt, word, note) {
 function render() {
   // Browsers limit how often the address can change; the page should carry on if so.
   try { history.replaceState(null, "", `compare.html?a=${a.id}&b=${b.id}`); } catch {}
-  document.title = `${a.name} vs. ${b.name} · Dino Time Machine`;
+  document.title = `${a.name} vs. ${b.name} · The Dino Landing`;
 
   for (const [select, mine, other] of [["pick-a", a, b], ["pick-b", b, a]]) {
     const el = document.getElementById(select);
@@ -132,7 +132,7 @@ function render() {
     <div class="side-a"><span class="stat-name">${a.name}</span><br>${html(a)}</div>
     <div class="side-b"><span class="stat-name">${b.name}</span><br>${html(b)}</div></div></div>`;
   document.getElementById("more").innerHTML =
-    pair("What it ate", d => `${DIETS[d.diet].icon} ${DIETS[d.diet].label}${d.dietNote ? ` (${d.dietNote})` : ""}`) +
+    pair("What it ate", d => `${DIETS[d.diet].label}${d.dietNote ? ` (${d.dietNote})` : ""}`) +
     pair("Where its fossils were found", d => d.found) +
     pair("Fun fact", d => d.fact) +
     `<div class="stat"><h3>Are they related?</h3><p>${kinship(a, b)}</p></div>`;
@@ -161,7 +161,7 @@ page.innerHTML = `
       <div class="picker side-b"><label for="pick-b">Second dinosaur</label><select id="pick-b">${options}</select></div>
     </div>
     <div class="matchups">
-      <button type="button" class="button" id="surprise">🎲 Surprise me</button>
+      <button type="button" class="button" id="surprise">Surprise me</button>
       ${MATCHUPS.map(([name], i) => `<button type="button" class="button" data-matchup="${i}">${name}</button>`).join("")}
     </div>
   </section>

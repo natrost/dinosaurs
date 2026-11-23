@@ -5,7 +5,7 @@ const LICENSES = {
 };
 
 document.getElementById("page").innerHTML = `
-  <nav class="crumbs"><a href="index.html">← Time machine</a></nav>
+  <nav class="crumbs"><a href="index.html">← Back to the dig</a></nav>
   <section class="panel">
     <h1>Credits</h1>
     <p>Thank you to the artists who share their dinosaur silhouettes through
@@ -15,7 +15,7 @@ document.getElementById("page").innerHTML = `
       const s = SILHOUETTES[d.id], lic = LICENSES[s.license];
       return `
       <div class="credit" id="${d.id}">
-        <div class="art" style="--tint:${periodOf(d).color}">${silhouetteSVG(d, "rgba(255,255,255,.92)")}</div>
+        <div class="art" style="--tint:${periodOf(d).color}">${silhouetteSVG(d, "var(--ink)")}</div>
         <p><strong>${d.name}</strong> (<em>${s.species}</em>)<br>
           <a href="${s.source}">Drawing</a> by ${s.by} · <a href="${lic.url}">${lic.name}</a>${s.mirrored ? " · mirrored" : ""}</p>
       </div>`;
@@ -26,4 +26,8 @@ document.getElementById("page").innerHTML = `
     <p>Fossil locations come from the <a href="https://paleobiodb.org/">Paleobiology Database</a>
       (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>), downloaded in November 2026. We removed uncertain and out-of-date records.
       Coastlines are from <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain).</p>
+  </section>
+  <section class="panel">
+    <h2>Type and artwork</h2>
+    <p>Set in <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> and <a href="https://fonts.google.com/specimen/Reenie+Beanie">Reenie Beanie</a> (SIL Open Font License). The T. rex drawing was made for this site.</p>
   </section>`;

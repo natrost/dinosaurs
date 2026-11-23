@@ -107,14 +107,14 @@ function periodChip(p) {
 
 function dietChip(d) {
   const diet = DIETS[d.diet];
-  return `<span class="chip chip-plain">${diet.icon} ${diet.label}</span>`;
+  return `<span class="chip chip-plain">${diet.label}</span>`;
 }
 
 function dinoCard(d, extra = "") {
   const p = periodOf(d);
   return `
     <a class="card" href="dino.html?id=${d.id}">
-      <div class="art" style="--tint:${p.color}">${silhouetteSVG(d, "rgba(255,255,255,.92)")}</div>
+      <div class="art" style="--tint:${p.color}">${silhouetteSVG(d, "var(--ink)")}</div>
       <div class="card-body">
         <h3>${d.name}</h3>
         <div class="chips">${periodChip(p)}${dietChip(d)}</div>
@@ -122,6 +122,19 @@ function dinoCard(d, extra = "") {
       </div>
     </a>`;
 }
+
+// Stretches big names to fill the width. Like the homepage, deeper (older) type is flatter.
+const SQUASH = { triassic: [125, 0.62], jurassic: [85, 1], cretaceous: [62, 1.5] };
+function fitGiant() {
+  document.querySelectorAll(".giant").forEach(el => {
+    const span = el.firstElementChild, [stretch, tall] = SQUASH[el.dataset.period];
+    span.style.cssText = `font-stretch:${stretch}%;font-size:100px;transform:none`;
+    const k = el.clientWidth / span.offsetWidth;
+    span.style.transform = `scale(${k}, ${k * tall})`;
+    el.style.height = `${span.offsetHeight * k * tall}px`;
+  });
+}
+addEventListener("resize", fitGiant);
 
 // ── The timeline ─────────────────────────────────────────────
 // opts.from / opts.to zoom the chart into part of the timeline.
@@ -164,7 +177,7 @@ function renderTimeline(el, dinos, opts = {}) {
   const step = range <= 30 ? 5 : range <= 80 ? 10 : 25;
   const ticks = [];
   for (let ma = Math.floor(from / step) * step; ma > to + step * 0.6; ma -= step) ticks.push(ma);
-  const endLabel = to === TIME_END ? "66 💥" : to;
+  const endLabel = to === TIME_END ? "66" : to;
   const axis = `
     <div class="tl-row tl-axis">
       <span class="tl-label">million years ago</span>

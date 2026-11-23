@@ -16,6 +16,7 @@ function update() {
   document.getElementById("ma").textContent = ma;
 
   const p = periodAt(ma);
+  document.querySelector(".machine").style.setProperty("--tint", p ? p.color : "var(--sand)");
   document.getElementById("period-chip").innerHTML = p ? periodChip(p) : `<span class="chip chip-plain">Before the dinosaurs</span>`;
   document.getElementById("period-blurb").textContent = p ? p.blurb : "This is the very end of the Permian, just before the Triassic began. There were no dinosaurs yet.";
 
