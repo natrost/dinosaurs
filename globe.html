@@ -17,13 +17,15 @@
     <section class="hero hero-slim"><h1>Spin the world back</h1><p>The continents drifted while dinosaurs lived on them. Drag the globe, slide through time, and see who was where.</p></section>
 
     <section class="stage-globe bleed" id="stage" aria-label="Globe">
-      <div class="globe-wrap"><canvas id="globe" tabindex="0" role="img" aria-label="Globe of the ancient Earth. Use the arrow keys to turn it. The list beside it names the dinosaurs shown."></canvas><div id="labels"></div></div>
-      <div class="globe-words">
+      <div class="globe-sky" id="sky"><canvas id="globe" tabindex="0" role="img" aria-label="Globe of the ancient Earth. Use the arrow keys to turn it, and plus and minus to zoom. The list beside it names the dinosaurs shown."></canvas><div id="labels"></div><div id="tip" class="globe-tip" hidden></div></div>
+      <div class="globe-wrap" id="wrap"><div class="globe-zoom"><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-out" aria-label="Zoom out">−</button></div></div>
+      <div class="globe-words" id="words">
         <p class="readout-ma"><span id="ma">67</span><span id="unit"></span></p>
         <p id="blurb" class="globe-blurb"></p>
         <ul id="alive" class="globe-alive"></ul>
+        <div id="detail" class="globe-detail" aria-live="polite"></div>
       </div>
-      <div class="globe-time">
+      <div class="globe-time" id="time-row">
         <input id="time" class="slider" type="range" min="0" max="186" step="1" value="185" aria-label="Move through time">
         <div class="slider-ends"><span>252 million years ago</span><span>66 million</span></div>
         <div class="jump"><button type="button" id="play">Play</button><button type="button" data-ma="230">Triassic</button><button type="button" data-ma="152">Jurassic</button><button type="button" data-ma="67">Cretaceous</button><button type="button" data-ma="0">Today</button></div>
