@@ -36,6 +36,7 @@ function fossilMapHTML(d) {
       </svg>
       <ul class="map-places">${places}</ul>
       <p class="small muted">This map shows Earth today. The continents were in different places when ${d.name} was alive! Data: <a href="https://paleobiodb.org/">Paleobiology Database</a>.</p>
+      <p><a class="button" href="globe.html?d=${d.id}">See it on the ancient globe →</a></p>
     </section>`;
 }
 

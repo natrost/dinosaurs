@@ -27,6 +27,11 @@ document.getElementById("page").innerHTML = `
       (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>), downloaded in November 2026. We removed uncertain and out-of-date records.
       Coastlines are from <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain).</p>
   </section>
+  <section class="panel" id="globe">
+    <h2>Globe</h2>
+    <p>Ancient positions are from the <a href="https://gws.gplates.org/">GPlates Web Service</a>, using the plate model of
+      <a href="https://doi.org/10.1016/j.earscirev.2020.103477">Merdith and others (2021)</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). We simplified the coastlines and blended between 5-million-year steps.</p>
+  </section>
   <section class="panel">
     <h2>Type and artwork</h2>
     <p>Set in <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> and <a href="https://fonts.google.com/specimen/Reenie+Beanie">Reenie Beanie</a> (SIL Open Font License). The T. rex drawing was made for this site.</p>

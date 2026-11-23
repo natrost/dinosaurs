@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Globe · The Dino Landing</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">The Dino Landing</a>
+    <nav class="site-nav"><a href="timemachine.html">Time machine</a><a href="globe.html">Globe</a><a href="compare.html">Compare</a></nav>
+  </header>
+
+  <main>
+    <section class="hero hero-slim"><h1>Spin the world back</h1><p>The continents drifted while dinosaurs lived on them. Drag the globe, slide through time, and see who was where.</p></section>
+
+    <section class="stage-globe bleed" id="stage" aria-label="Globe">
+      <div class="globe-wrap"><canvas id="globe" tabindex="0" role="img" aria-label="Globe of the ancient Earth. Use the arrow keys to turn it. The list beside it names the dinosaurs shown."></canvas><div id="labels"></div></div>
+      <div class="globe-words">
+        <p class="readout-ma"><span id="ma">67</span><span id="unit"></span></p>
+        <p id="blurb" class="globe-blurb"></p>
+        <ul id="alive" class="globe-alive"></ul>
+      </div>
+      <div class="globe-time">
+        <input id="time" class="slider" type="range" min="0" max="186" step="1" value="185" aria-label="Move through time">
+        <div class="slider-ends"><span>252 million years ago</span><span>66 million</span></div>
+        <div class="jump"><button type="button" id="play">Play</button><button type="button" data-ma="230">Triassic</button><button type="button" data-ma="152">Jurassic</button><button type="button" data-ma="67">Cretaceous</button><button type="button" data-ma="0">Today</button></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Who lived near you?</h2>
+      <p>Choose a place, or tap any land on the globe to drop a pin.</p>
+      <div class="picker side-a" style="--side:var(--pink);max-width:420px"><label for="place">Your place</label><select id="place"></select></div>
+      <div id="near" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <h2>How sure are we?</h2>
+      <p>The land here is today’s coastlines, moved to where a scientific model says they sat. The real shorelines were different: shallow seas often covered land that’s dry now. The further back you go, the less certain the map gets.</p>
+      <p>“Near you” means where fossils were found, measured on today’s map. It only covers the 19 dinosaurs on this site, so plenty of others lived near you too. <a href="credits.html#globe">Where the data comes from</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">Dates and sizes are scientists' best estimates and change as new fossils are found. <a href="credits.html">Credits</a></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/silhouettes.js"></script>
+  <script src="js/fossils.js"></script>
+  <script src="js/earth.js"></script>
+  <script src="js/places.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/globe.js"></script>
+</body>
+</html>
