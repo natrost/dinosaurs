@@ -305,7 +305,15 @@ $("play").addEventListener("click", () => {
   if (ma <= 72) setTime(252);
   tween = null; playing = true; $("play").textContent = "Pause";
 });
-document.querySelectorAll("[data-ma]").forEach(b => b.addEventListener("click", () => slideTo(Number(b.dataset.ma))));
+document.querySelectorAll("[data-ma]").forEach(b => b.addEventListener("click", () => slideTo(Number(b.dataset.ma), turnToDinos)));
+// Turn toward where the most dinosaurs are, unless they're already in plain view. On today's map, turn to your pin.
+function turnToDinos() {
+  const spots = ma === 0 ? (pin ? [placeNow(pin.v, pin.plate)] : []) : CAST.filter(o => isAlive(o.d)).map(o => placeNow(o.main.v, o.main.plate));
+  if (!spots.length) return;
+  const crowd = v => spots.filter(w => dot(v, w) > .8).length;
+  const best = spots.slice().sort((a, b) => crowd(b) - crowd(a))[0];
+  if (toScreen(best)[2] < .75) faceTo(best);
+}
 document.addEventListener("click", e => {
   const b = e.target.closest("[data-go]");
   if (b) { showDino(b.dataset.go); if (b.closest("#near")) $("stage").scrollIntoView({ behavior: calm ? "auto" : "smooth" }); }
