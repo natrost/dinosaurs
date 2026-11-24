@@ -1,4 +1,4 @@
-# The Dino Landing
+# The Dino Field Club
 
 A dinosaur site with a time slider, a timeline, and a page for every dinosaur.
 Plain HTML, CSS and JavaScript: no build step.
@@ -19,7 +19,8 @@ then open http://localhost:8766
 - `timemachine.html` + `js/timemachine.js`: time machine, timeline, all dinosaurs.
 - `dino.html` + `js/dino.js`: the detail page, e.g. `dino.html?id=triceratops`.
 - `compare.html` + `js/compare.js`: compare two dinosaurs, e.g. `compare.html?a=tyrannosaurus&b=stegosaurus`.
-- `js/sound.js`: best-guess calls, made in code, and the name button. Name clips are in `audio/names/`.
+- `js/photos.js`, `js/carousel.js`: the picture carousel. Dinosaurs with no pictures yet get placeholders made from their silhouette.
+- `js/sound.js`: the name button and the best-guess calls. Clips are in `audio/names/` and `audio/calls/`; the Parasaurolophus horn is made in code.
 - `js/globe-core.js`: the globe engine both pages share.
 - `globe.html` + `js/globe.js`: spinning globe and "Who lived near you". `js/earth.js` is the moving land (CC BY 4.0, credit required), `js/borders.js` today's country borders, `js/places.js` the list of places.
 - `js/size.js`: the people in size charts and the height box.

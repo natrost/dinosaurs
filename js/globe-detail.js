@@ -33,4 +33,13 @@ if ($("globe") && dino) {
   view = facing();
   startGlobe();
   say();
+  // The little globe in the facts bar is a picture of this one, for dinosaurs without a finished drawing.
+  const spot = $("fact-globe");
+  if (spot && !spot.firstElementChild) setTimeout(() => {
+    const k = canvas.width / W, pic = document.createElement("canvas");
+    pic.width = pic.height = 450;
+    draw(); // it may not have been on screen yet
+    pic.getContext("2d").drawImage(canvas, (cx - R) * k, (cy - R) * k, 2 * R * k, 2 * R * k, 0, 0, 450, 450);
+    spot.append(pic);
+  }, 400);
 }

@@ -109,7 +109,7 @@ function statHTML(title, key, fmt, word, note) {
 function render() {
   // Browsers limit how often the address can change; the page should carry on if so.
   try { history.replaceState(null, "", `compare.html?a=${a.id}&b=${b.id}`); } catch {}
-  document.title = `${a.name} vs. ${b.name} · The Dino Landing`;
+  document.title = `${a.name} vs. ${b.name} · The Dino Field Club`;
 
   for (const [select, mine, other] of [["pick-a", a, b], ["pick-b", b, a]]) {
     const el = document.getElementById(select);

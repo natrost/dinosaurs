@@ -61,8 +61,14 @@ function renderSize(d) {
 }
 
 // ── The page ─────────────────────────────────────────────────
+// Finished artwork from the Figma file. A dinosaur that isn't here yet shows its silhouette.
+const HERO_ART = { tyrannosaurus: { src: "images/hero/trex.webp", globe: "images/hero/globe-trex.webp", crown: true } };
+// The footprints in the design are a big three-toed meat-eater's, so only dinosaurs like that get them.
+const THREE_TOED = ["tyrannosaurus", "allosaurus", "dilophosaurus", "coelophysis"];
+const shortLength = m => m < 1 ? `${Math.round(m * 39.37)} in` : `${Math.round(m * 3.281)} ft`;
+
 function renderPage(d) {
-  document.title = `${d.name} · The Dino Landing`;
+  document.title = `${d.name} · The Dino Field Club`;
   const p = periodOf(d);
   const diet = DIETS[d.diet];
 
@@ -75,25 +81,31 @@ function renderPage(d) {
   const prev = ordered[i - 1], next = ordered[i + 1];
 
   page.innerHTML = `
-    <section class="dino-hero bleed" style="--tint:${p.color}">
-      <nav class="crumbs"><a href="timemachine.html">← Time machine</a></nav>
-      <h1 class="giant" data-period="${p.id}" aria-label="${d.name}"><span aria-hidden="true">${d.name}</span></h1>
-      <div class="hero-art">${silhouetteSVG(d, "var(--ink)")}</div>
-      <div class="hero-words">
-        <div class="say-row"><p class="say">${d.say}</p><button type="button" class="button say-button" id="say-name" aria-label="Hear how to say ${d.name}" hidden>Hear it</button></div>
-        <p class="meaning">It means “${d.meaning}”.</p>
-        <p class="lived">${p.name}, about ${d.start} to ${d.end} million years ago</p>
+    <section class="club-hero" style="--tint:${p.color}">
+      <h1 class="club-name" style="--len:${Math.max(...d.name.split(" ").map(w => w.length))}">${d.name}</h1>
+      <div class="club-say"><span>${d.say}</span><button type="button" id="say-name" aria-label="Hear how to say ${d.name}" hidden><img src="images/hero/audio.svg" width="32" height="32" alt=""></button></div>
+      <div class="club-meaning"><p>It means “${d.meaning}”.</p><p>${p.name}, about ${d.start} to ${d.end} million years ago</p></div>
+      <div class="club-art" aria-hidden="true">
+        <div class="club-circle"></div>
+        ${THREE_TOED.includes(d.id) ? `<div class="club-prints"></div>` : ""}
+        <div class="club-word"><div style="--loop:${d.name.length * 3.4}s"><span>${d.name}</span><span>${d.name}</span></div></div>
+        ${HERO_ART[d.id]
+          ? `<img class="club-photo" src="${HERO_ART[d.id].src}" width="1448" height="1086" alt="">${HERO_ART[d.id].crown ? `<div class="club-crown"></div>` : ""}`
+          : `<div class="club-shape">${silhouetteSVG(d, "var(--ink)").replace("<svg ", `<svg preserveAspectRatio="xMidYMax meet" `)}</div>`}
       </div>
     </section>
 
-    <section class="facts">
-      <div class="fact"><span class="fact-label">Length</span><span class="fact-value">${fmtLength(d.lengthM)}</span></div>
-      <div class="fact"><span class="fact-label">Weight</span><span class="fact-value">${fmtWeight(d.weightKg)}</span>
-        <span class="fact-note">${weightCompare(d.weightKg)}</span></div>
-      <div class="fact"><span class="fact-label">Ate</span><span class="fact-value">${diet.label}</span>
-        ${d.dietNote ? `<span class="fact-note">${d.dietNote}</span>` : ""}</div>
-      <div class="fact"><span class="fact-label">Fossils found in</span><span class="fact-value">${d.found}</span></div>
+    <section class="club-facts" aria-label="Quick facts">
+      <div class="club-row">
+        <div class="club-fact"><h2>Length</h2><p>${shortLength(d.lengthM)}</p></div>
+        <div class="club-fact"><h2>Weight</h2><p>${Math.round(d.weightKg * 2.205).toLocaleString()} lb</p></div>
+        <div class="club-fact"><h2>Food</h2><p>${diet.label}</p>${d.dietNote ? `<p class="note">${d.dietNote}</p>` : ""}</div>
+        <div class="club-fact"><h2>Fossils found in</h2><p>${d.found}</p></div>
+      </div>
+      <a class="club-globe" id="fact-globe" href="#stage" aria-label="See where ${d.name} fossils were found">${HERO_ART[d.id] ? `<img src="${HERO_ART[d.id].globe}" width="225" height="221" alt="">` : ""}</a>
     </section>
+
+    ${typeof photosHTML === "function" ? photosHTML(d) : ""}
 
     <section class="funfact panel"><strong>Fun fact:</strong> ${d.fact}</section>
 
@@ -101,6 +113,7 @@ function renderPage(d) {
 
     <section class="panel">
       <h2>How big was it?</h2>
+      <p>${fmtLength(d.lengthM)} long and ${fmtWeight(d.weightKg)}: ${weightCompare(d.weightKg)}.</p>
       <div id="size-scene" class="size-scene"></div>
       <div id="size-legend" class="size-legend"></div>
       ${heightFormHTML()}
@@ -157,6 +170,7 @@ function renderPage(d) {
   document.fonts.ready.then(fitGiant);
 
   startHeightForm(() => renderSize(d));
+  if (typeof startPhotos === "function") startPhotos();
 }
 
 // ── Start ────────────────────────────────────────────────────

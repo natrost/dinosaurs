@@ -101,6 +101,7 @@ a.tl-row:hover .tl-label { text-decoration: underline; }
 .call-play canvas { width: 100%; height: clamp(90px, 12vw, 170px); display: block; margin-bottom: 10px; }
 .call-button { font-size: 18px; padding: 14px 22px; }
 .call-play .small { margin: 10px 0 0; font-weight: 600; }
+.call .made { font-weight: 600; }
 .sure { display: flex; align-items: center; gap: 12px; font-weight: 800; margin: 0; }
 .dots-row { display: flex; gap: 5px; }
 .dots-row i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--ink); }
@@ -111,6 +112,23 @@ a.tl-row:hover .tl-label { text-decoration: underline; }
 .fact-label { font-weight: 700; }
 .fact-value { font-size: clamp(22px, 2.3vw, 30px); font-weight: 900; font-stretch: 80%; line-height: 1.05; }
 .fact-note { font-size: 16px; }
+/* ── Photo carousel ── */
+.photos { padding: 0; margin-top: 8px; margin-bottom: 8px; }
+.photo-track { --tall: clamp(250px, 46vw, 640px); display: flex; gap: clamp(10px, 1.4vw, 20px); overflow-x: auto; scroll-snap-type: x mandatory; position: relative; scrollbar-width: none; padding: 4px max(var(--pad), calc(50vw - var(--maxw) / 2 + var(--pad))); }
+.photo-track::-webkit-scrollbar { display: none; }
+.photo-track:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.photo { flex: none; margin: 0; scroll-snap-align: center; width: min(calc(var(--tall) * var(--ratio)), 86vw); cursor: pointer; }
+.photo.is-on, .photo:only-child { cursor: auto; }
+.photo:not(.is-on):not(:only-child) > :first-child { opacity: .5; }
+.photo img, .photo .placeholder { width: 100%; height: var(--tall); object-fit: cover; display: block; transition: opacity .25s; }
+.photo img.whole, .photo img.cut { object-fit: contain; object-position: center bottom; }
+.photo img.cut { mix-blend-mode: multiply; }
+.photo figcaption { margin-top: 10px; font-size: 16px; line-height: 1.35; }
+.photo figcaption strong { margin-right: 4px; }
+.photo .by { display: block; font-size: 14px; opacity: .8; }
+.photo-nav { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 0 max(var(--pad), calc(50vw - var(--maxw) / 2 + var(--pad))); font-weight: 700; }
+.photo-nav .button { width: 54px; height: 48px; padding: 0; font-size: 22px; }
+.photo-nav .button:disabled { opacity: .25; cursor: default; background: var(--ink); color: var(--ivory); }
 .funfact { font-size: clamp(24px, 3.2vw, 44px); line-height: 1.1; font-weight: 800; font-stretch: 85%; }
 .funfact strong { display: block; font: 400 1.15em/.9 var(--pen); -webkit-text-stroke: .4px currentColor; }
 .size-scene svg { width: 100%; max-height: 420px; display: block; overflow: visible; }

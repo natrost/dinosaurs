@@ -4,3 +4,6 @@
 
 # Working files that don't belong on the live site
 _*
+
+# Until we know its license allows it on a public website
+fonts/TAYAmaya.otf

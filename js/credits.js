@@ -21,6 +21,13 @@ document.getElementById("page").innerHTML = `
       </div>`;
     }).join("")}</div>
   </section>
+  <section class="panel" id="pictures">
+    <h2>Pictures</h2>
+    <p>Thank you to the photographers and artists who share their work through <a href="https://commons.wikimedia.org/">Wikimedia Commons</a>.
+      We made the pictures smaller, and some are shown on our paper color. Each one is shared under the same license as its original.</p>
+    ${DINOS.filter(d => (PHOTOS[d.id] || []).length).sort((a, b) => a.name.localeCompare(b.name)).map(d => `
+    <p class="picture-credits"><strong>${d.name}:</strong> ${PHOTOS[d.id].map((x, i) => `<a href="${x.page}">${x.kind.toLowerCase()} ${i + 1}</a> by ${x.by} (${x.licurl ? `<a href="${x.licurl}">${x.lic}</a>` : x.lic})`).join("; ")}.</p>`).join("")}
+  </section>
   <section class="panel">
     <h2>Fossils</h2>
     <p>Fossil locations come from the <a href="https://paleobiodb.org/">Paleobiology Database</a>
@@ -34,5 +41,6 @@ document.getElementById("page").innerHTML = `
   </section>
   <section class="panel">
     <h2>Type, artwork and sound</h2>
-    <p>Set in <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> and <a href="https://fonts.google.com/specimen/Reenie+Beanie">Reenie Beanie</a> (SIL Open Font License). The T. rex drawing and the dinosaur calls were made for this site. The calls are best guesses: nobody has heard a dinosaur. Names are spoken by <a href="https://huggingface.co/hexgrad/Kokoro-82M">Kokoro</a>, an open computer voice (Apache 2.0).</p>
+    <p>Set in <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> and <a href="https://fonts.google.com/specimen/Reenie+Beanie">Reenie Beanie</a> (SIL Open Font License). The T. rex drawing was made for this site. Names are spoken by <a href="https://huggingface.co/hexgrad/Kokoro-82M">Kokoro</a>, an open computer voice (Apache 2.0).</p>
+    <p>The dinosaur calls are best guesses: nobody has heard a dinosaur. We made them from <a href="https://www.nps.gov/subjects/sound/gallery.htm">National Park Service recordings</a> (public domain): an American alligator from Everglades, bison from Yellowstone and a common raven from Grand Teton. We cleaned them up, slowed them down and layered them. The Parasaurolophus horn is made by computer.</p>
   </section>`;
