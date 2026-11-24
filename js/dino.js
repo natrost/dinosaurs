@@ -65,7 +65,8 @@ function renderSize(d) {
 // w, h: the file's own size. at: left, top, width and height in the design's pixels. print: its own footprint, instead of the design's.
 const HERO_ART = {
   tyrannosaurus: { src: "images/hero/trex.webp", w: 1448, h: 1086, at: [81, 325, 1448, 1086], globe: "images/hero/globe-trex.webp", crown: true },
-  eoraptor: { src: "images/hero/eoraptor.webp", w: 1336, h: 822, at: [125, 473, 1470, 904], print: "images/hero/print-eoraptor.webp" }
+  eoraptor: { src: "images/hero/eoraptor.webp", w: 1336, h: 822, at: [125, 473, 1470, 904], print: "images/hero/print-eoraptor.webp" },
+  herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1065, h: 929, at: [110, 309, 1225, 1068], print: "images/hero/print-herrerasaurus.webp" }
 };
 // The footprints in the design are a big three-toed meat-eater's, so only dinosaurs like that get them.
 const THREE_TOED = ["tyrannosaurus", "allosaurus", "dilophosaurus", "coelophysis"];

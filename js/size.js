@@ -4,7 +4,10 @@ const ADULT_M = 1.75;
 const BUS_M = { length: 12, height: 3.2 };
 
 // Side views, drawn facing right. span: how much ground it covers for each meter of length along the body.
-const SIZE_ART = { eoraptor: { src: "images/side/eoraptor.webp", w: 1200, h: 481, span: .96 } };
+const SIZE_ART = {
+  eoraptor: { src: "images/side/eoraptor.webp", w: 1200, h: 481, span: .96 },
+  herrerasaurus: { src: "images/side/herrerasaurus.webp", w: 1200, h: 457, span: .96 }
+};
 function sizeArt(d, color) {
   const art = SIZE_ART[d.id];
   if (!art) return silhouetteOf(d, color);

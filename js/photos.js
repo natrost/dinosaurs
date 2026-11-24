@@ -13,6 +13,9 @@ const PHOTOS = {
     {"file": "eoraptor-4.jpg", "w": 1280, "h": 523, "kind": "Skeleton", "alt": "A skeleton at the Royal Ontario Museum, Canada.", "by": "The Lord of the Allosaurs", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:Royal_Ontario_Museum_Eoraptor.JPG"}
   ],
   herrerasaurus: [
+    {"file": "herrerasaurus-art-1.jpg", "w": 1400, "h": 788, "kind": "Artwork", "alt": "How it might have looked at home, among ferns and conifers. The colors are a guess.", "by": "Made for this site"},
+    {"file": "herrerasaurus-art-2.jpg", "w": 1400, "h": 1050, "kind": "Artwork", "alt": "Up close.", "by": "Made for this site"},
+    {"file": "herrerasaurus-art-3.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Looking back.", "by": "Made for this site"},
     {"file": "herrerasaurus-1.jpg", "w": 1280, "h": 870, "kind": "Artwork", "alt": "How one artist pictures it.", "by": "Fred Wierum", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:Herrerasaurus_ischigualastensis_Illustration.jpg", "cut": true},
     {"file": "herrerasaurus-2.jpg", "w": 960, "h": 490, "kind": "Skeleton", "alt": "A skeleton posed mid-stride.", "by": "★Kumiko★", "lic": "CC BY-SA 2.0", "licurl": "https://creativecommons.org/licenses/by-sa/2.0", "page": "https://commons.wikimedia.org/wiki/File:Herrerasaurus_skeleton.jpg"},
     {"file": "herrerasaurus-3.jpg", "w": 1280, "h": 662, "kind": "Skull", "alt": "A skull full of curved, blade-like teeth.", "by": "Ghedoghedo", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:Herrerasaurus1.JPG"}
