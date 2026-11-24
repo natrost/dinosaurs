@@ -21,7 +21,7 @@ function treeHTML(node, path, current) {
 // ── Size comparison ──────────────────────────────────────────
 function renderSize(d) {
   const kidM = getKidInches() * 0.0254;
-  const art = silhouetteOf(d, periodOf(d).color);
+  const art = sizeArt(d, periodOf(d).color);
   const L = d.lengthM;
   const W = L * art.span; // how much ground it covers; less than its length if curved
   const H = (art.h * W) / 100;
@@ -54,15 +54,19 @@ function renderSize(d) {
     </svg>`;
 
   document.getElementById("size-legend").innerHTML = `
-    <span><i class="key key-dino" style="background:${periodOf(d).color}"></i>${d.name}: ${fmtLength(L)} long</span>
+    <span>${SIZE_ART[d.id] ? "" : `<i class="key key-dino" style="background:${periodOf(d).color}"></i>`}${d.name}: ${fmtLength(L)} long</span>
     <span><i class="key key-adult"></i>Grown-up: ${fmtHeight(ADULT_M)}</span>
     <span><i class="key key-kid"></i>You: ${fmtHeight(kidM)}</span>
     ${showBus ? `<span><i class="key key-bus"></i>School bus: ${fmtLength(BUS_M.length)}</span>` : ""}`;
 }
 
 // ── The page ─────────────────────────────────────────────────
-// Finished artwork from the Figma file. A dinosaur that isn't here yet shows its silhouette.
-const HERO_ART = { tyrannosaurus: { src: "images/hero/trex.webp", globe: "images/hero/globe-trex.webp", crown: true } };
+// Finished artwork. A dinosaur that isn't here yet shows its silhouette.
+// w, h: the file's own size. at: left, top, width and height in the design's pixels. print: its own footprint, instead of the design's.
+const HERO_ART = {
+  tyrannosaurus: { src: "images/hero/trex.webp", w: 1448, h: 1086, at: [81, 325, 1448, 1086], globe: "images/hero/globe-trex.webp", crown: true },
+  eoraptor: { src: "images/hero/eoraptor.webp", w: 1336, h: 822, at: [125, 473, 1470, 904], print: "images/hero/print-eoraptor.webp" }
+};
 // The footprints in the design are a big three-toed meat-eater's, so only dinosaurs like that get them.
 const THREE_TOED = ["tyrannosaurus", "allosaurus", "dilophosaurus", "coelophysis"];
 const shortLength = m => m < 1 ? `${Math.round(m * 39.37)} in` : `${Math.round(m * 3.281)} ft`;
@@ -71,6 +75,7 @@ function renderPage(d) {
   document.title = `${d.name} · The Dino Field Club`;
   const p = periodOf(d);
   const diet = DIETS[d.diet];
+  const art = HERO_ART[d.id];
 
   const neighbors = DINOS.filter(x => x.id !== d.id && livedTogether(d, x));
   const relatives = DINOS.filter(x => x.id !== d.id && x.group === d.group);
@@ -87,10 +92,12 @@ function renderPage(d) {
       <div class="club-meaning"><p>It means “${d.meaning}”.</p><p>${p.name}, about ${d.start} to ${d.end} million years ago</p></div>
       <div class="club-art" aria-hidden="true">
         <div class="club-circle"></div>
-        ${THREE_TOED.includes(d.id) ? `<div class="club-prints"></div>` : ""}
+        ${art && art.print
+          ? [1, 2].map(n => `<div class="club-print club-print-${n}" style="-webkit-mask-image:url(${art.print});mask-image:url(${art.print})"></div>`).join("")
+          : THREE_TOED.includes(d.id) ? `<div class="club-prints"></div>` : ""}
         <div class="club-word"><div style="--loop:${d.name.length * 3.4}s"><span>${d.name}</span><span>${d.name}</span></div></div>
-        ${HERO_ART[d.id]
-          ? `<img class="club-photo" src="${HERO_ART[d.id].src}" width="1448" height="1086" alt="">${HERO_ART[d.id].crown ? `<div class="club-crown"></div>` : ""}`
+        ${art
+          ? `<img class="club-photo" src="${art.src}" width="${art.w}" height="${art.h}" style="${["--x", "--y", "--w", "--h"].map((k, n) => `${k}:${art.at[n]}`).join(";")}" alt="">${art.crown ? `<div class="club-crown"></div>` : ""}`
           : `<div class="club-shape">${silhouetteSVG(d, "var(--ink)").replace("<svg ", `<svg preserveAspectRatio="xMidYMax meet" `)}</div>`}
       </div>
     </section>
@@ -102,7 +109,7 @@ function renderPage(d) {
         <div class="club-fact"><h2>Food</h2><p>${diet.label}</p>${d.dietNote ? `<p class="note">${d.dietNote}</p>` : ""}</div>
         <div class="club-fact"><h2>Fossils found in</h2><p>${d.found}</p></div>
       </div>
-      <a class="club-globe" id="fact-globe" href="#stage" aria-label="See where ${d.name} fossils were found">${HERO_ART[d.id] ? `<img src="${HERO_ART[d.id].globe}" width="225" height="221" alt="">` : ""}</a>
+      <a class="club-globe" id="fact-globe" href="#stage" aria-label="See where ${d.name} fossils were found">${art && art.globe ? `<img src="${art.globe}" width="225" height="221" alt="">` : ""}</a>
     </section>
 
     ${typeof photosHTML === "function" ? photosHTML(d) : ""}
@@ -117,7 +124,9 @@ function renderPage(d) {
       <div id="size-scene" class="size-scene"></div>
       <div id="size-legend" class="size-legend"></div>
       ${heightFormHTML()}
-      <p class="small muted">${SILHOUETTES[d.id]
+      <p class="small muted">${SIZE_ART[d.id]
+        ? "Length is measured along the body, from nose to tail tip. The colors are a guess."
+        : SILHOUETTES[d.id]
         ? `Length is measured along the body, from nose to tail tip. <a href="credits.html#${d.id}">Who drew this?</a>`
         : "This dinosaur's shape is a placeholder, so only its length is right."}</p>
       <p><a class="button" href="compare.html?a=${d.id}">Compare with another dinosaur →</a></p>

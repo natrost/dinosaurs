@@ -35,7 +35,7 @@ function photosHTML(d) {
         <figure class="photo${i ? "" : " is-on"}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${list.length}" style="--ratio:${(x.w / x.h).toFixed(4)}">
           ${real.length
             ? `<img${x.cut ? ` class="cut"` : x.w / x.h > 1.75 ? ` class="whole"` : ""} src="images/photos/${x.file}" width="${x.w}" height="${x.h}" alt="${x.alt}" ${i > 1 ? `loading="lazy"` : ""} decoding="async" draggable="false">
-          <figcaption><strong>${x.kind}</strong> ${x.alt} <span class="by">${x.by} · <a href="${x.licurl || x.page}">${x.lic}</a> · <a href="${x.page}">Source</a></span></figcaption>`
+          <figcaption><strong>${x.kind}</strong> ${x.alt} <span class="by">${x.by}${x.page ? ` · <a href="${x.licurl || x.page}">${x.lic}</a> · <a href="${x.page}">Source</a>` : ""}</span></figcaption>`
             : `${placeholderSVG(d, x)}
           <figcaption><strong>${x.name}</strong> Photo to come</figcaption>`}
         </figure>`).join("")}</div>

@@ -1,8 +1,12 @@
 // Pictures for the carousel on each dinosaur page. Files are in images/photos/.
-// All are from Wikimedia Commons, resized, with the credit and license each one needs. cut: drawn on white, so the paper shows through.
+// All but the ones with no "page" (our own artwork) are from Wikimedia Commons, resized, with the credit and license each one needs. cut: drawn on white, so the paper shows through.
 // A dinosaur with no pictures here gets placeholders drawn from its silhouette.
 const PHOTOS = {
   eoraptor: [
+    {"file": "eoraptor-art-1.jpg", "w": 1400, "h": 788, "kind": "Artwork", "alt": "How it might have looked at home, among horsetails and ferns. The colors are a guess.", "by": "Made for this site"},
+    {"file": "eoraptor-art-2.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Up close.", "by": "Made for this site"},
+    {"file": "eoraptor-art-3.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "On the move.", "by": "Made for this site"},
+    {"file": "eoraptor-art-4.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Face to face.", "by": "Made for this site"},
     {"file": "eoraptor-1.jpg", "w": 1280, "h": 685, "kind": "Skull", "alt": "A skull, with leaf-shaped and curved teeth.", "by": "Tylwyth Eldar", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:Dinosauria_-_Eoraptor_lunensis.jpg"},
     {"file": "eoraptor-2.jpg", "w": 1280, "h": 952, "kind": "Skeleton", "alt": "A skeleton at Chile’s National Museum of Natural History.", "by": "Rjcastillo", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:Eoraptor_Lunensis_20250105.jpg"},
     {"file": "eoraptor-3.jpg", "w": 1280, "h": 905, "kind": "Fossil", "alt": "Bones arranged the way they were found.", "by": "★Kumiko★", "lic": "CC BY-SA 2.0", "licurl": "https://creativecommons.org/licenses/by-sa/2.0", "page": "https://commons.wikimedia.org/wiki/File:Eoraptor_fossil.jpg"},

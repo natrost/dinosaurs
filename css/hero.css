@@ -24,7 +24,9 @@ html:has(.club) { background: #ebebe1; }
 .club-word span { padding-right: .32em; }
 @keyframes club-word { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .club-word div { animation: none; } }
-.club-photo { --x: 81; --y: 325; --w: 1448; --h: 1086; }
+.club-print { background: var(--tint); -webkit-mask: 0 0 / 100% 100%; mask: 0 0 / 100% 100%; }
+.club-print-1 { --x: 1200; --y: 262; --w: 330; --h: 330; rotate: 14deg; }
+.club-print-2 { --x: -100; --y: 930; --w: 330; --h: 330; rotate: 14deg; }
 .club-shape { --x: 130; --y: 520; --w: 1180; --h: 850; }
 .club-shape svg { width: 100%; height: 100%; display: block; }
 .club-crown { --x: 332; --y: 315.5; --w: 128.93; --h: 77.5; background: var(--tint); -webkit-mask: url("../images/hero/crown.svg") 0 0 / 100% 100%; mask: url("../images/hero/crown.svg") 0 0 / 100% 100%; }
@@ -61,6 +63,8 @@ html:has(.club) { background: #ebebe1; }
   .club-say button { width: 34px; height: 34px; }
   .club-meaning { margin-top: 14px; text-align: left; font-size: 22px; line-height: 1.1; }
   .club-art { position: relative; inset: auto; height: calc(var(--u) * 1110); margin-top: 16px; }
+  .club-print-1 { --x: 1085; }
+  .club-print-2 { --x: -20; }
   .club-facts { margin-top: 0; padding: 30px 0 10px; }
   .club-row { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 22px 34px; padding: 22px 0; border-top-width: 6px; }
   .club-fact:last-child { grid-column: 1 / -1; padding-right: 110px; margin-left: 0; }

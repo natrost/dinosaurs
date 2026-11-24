@@ -3,6 +3,15 @@ const PERSON_PATH = "M0.06,0.2 L0.24,0.2 Q0.27,0.2 0.27,0.24 L0.27,0.52 L0.23,0.
 const ADULT_M = 1.75;
 const BUS_M = { length: 12, height: 3.2 };
 
+// Side views, drawn facing right. span: how much ground it covers for each meter of length along the body.
+const SIZE_ART = { eoraptor: { src: "images/side/eoraptor.webp", w: 1200, h: 481, span: .96 } };
+function sizeArt(d, color) {
+  const art = SIZE_ART[d.id];
+  if (!art) return silhouetteOf(d, color);
+  const h = (art.h / art.w) * 100;
+  return { real: true, h, span: art.span, shape: `<image href="${art.src}" width="100" height="${h}" preserveAspectRatio="none"/>` };
+}
+
 function personSVG(x, ground, heightM, cls) {
   return `<g class="${cls}" transform="translate(${x} ${ground - heightM}) scale(${heightM})">
     <circle cx="0.15" cy="0.09" r="0.085"/><path d="${PERSON_PATH}"/></g>`;
