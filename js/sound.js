@@ -2,37 +2,22 @@
 // Nothing plays until someone presses a button.
 
 // ── Saying the name ──────────────────────────────────────────
-// Ids with a recording in audio/names/<id>.m4a. The rest use the device's own voice.
-const RECORDED = [];
-// Spellings that help a computer voice with the tricky names.
-const SPOKEN = {
-  eoraptor: "Eeo raptor", herrerasaurus: "Herrera sorus", coelophysis: "Seelo fysis", plateosaurus: "Plattio sorus",
-  dilophosaurus: "Die loffo sorus", archaeopteryx: "Arkee opterix", argentinosaurus: "Argenteeno sorus",
-  parasaurolophus: "Para sore olofuss", pachycephalosaurus: "Packy sefalo sorus", ankylosaurus: "Ang kylo sorus",
-  spinosaurus: "Spyno sorus", allosaurus: "Allo sorus"
-};
-const speech = "speechSynthesis" in window ? window.speechSynthesis : null;
-// Only voices built into the device: some browsers offer ones that send the words to a server.
-function localVoice() {
-  const voices = speech ? speech.getVoices().filter(v => v.localService && /^en\b/i.test(v.lang)) : [];
-  const rank = v => (/natural|enhanced|premium|siri/i.test(v.name) ? 0 : /samantha|daniel|karen|moira|aaron|ava|zira|david/i.test(v.name) ? 1 : 2) + (/US/i.test(v.lang) ? 0 : .5);
-  return voices.sort((a, b) => rank(a) - rank(b))[0] || null;
-}
-const canSay = d => RECORDED.includes(d.id) || !!localVoice();
+// Dinosaurs with a clip in audio/names/<id>.m4a. Any of them can be swapped for a new recording with the same name.
+const CLIPS = ["eoraptor", "herrerasaurus", "coelophysis", "plateosaurus", "dilophosaurus", "stegosaurus", "allosaurus", "brachiosaurus", "diplodocus", "archaeopteryx", "iguanodon", "spinosaurus", "argentinosaurus", "parasaurolophus", "velociraptor", "ankylosaurus", "pachycephalosaurus", "triceratops", "tyrannosaurus"];
 let nameClip = null;
-function hushName() { if (nameClip) { nameClip.pause(); nameClip = null; } if (speech) speech.cancel(); }
+function hushName() {
+  if (!nameClip) return;
+  const { clip, done } = nameClip;
+  nameClip = null;
+  clip.pause();
+  done();
+}
 function sayName(d, done) {
   stopCall(); hushName();
-  if (RECORDED.includes(d.id)) {
-    nameClip = new Audio(`audio/names/${d.id}.m4a`);
-    nameClip.onended = nameClip.onerror = done;
-    nameClip.play().catch(done);
-    return;
-  }
-  const u = new SpeechSynthesisUtterance(SPOKEN[d.id] || d.name);
-  u.voice = localVoice(); u.lang = "en-US"; u.rate = .82;
-  u.onend = u.onerror = done;
-  speech.speak(u);
+  const clip = new Audio(`audio/names/${d.id}.m4a`), mine = nameClip = { clip, done };
+  const end = () => { if (nameClip === mine) hushName(); };
+  clip.onended = clip.onerror = end;
+  clip.play().catch(end);
 }
 
 // ── Best-guess calls ─────────────────────────────────────────
@@ -200,13 +185,10 @@ function callHTML(d) {
 function startSounds(d) {
   const nameBtn = document.getElementById("say-name"), callBtn = document.getElementById("call"), wave = document.getElementById("wave");
   if (nameBtn) {
-    // Voices can take a moment to load, so the button appears once there's one to use.
-    const ready = () => { nameBtn.hidden = !canSay(d); };
-    ready();
-    if (speech && speech.addEventListener) speech.addEventListener("voiceschanged", ready);
+    nameBtn.hidden = !CLIPS.includes(d.id);
     nameBtn.addEventListener("click", () => {
-      nameBtn.classList.add("is-playing");
       sayName(d, () => nameBtn.classList.remove("is-playing"));
+      nameBtn.classList.add("is-playing");
     });
   }
   if (!callBtn) return;

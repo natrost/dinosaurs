@@ -34,5 +34,5 @@ document.getElementById("page").innerHTML = `
   </section>
   <section class="panel">
     <h2>Type, artwork and sound</h2>
-    <p>Set in <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> and <a href="https://fonts.google.com/specimen/Reenie+Beanie">Reenie Beanie</a> (SIL Open Font License). The T. rex drawing and the dinosaur calls were made for this site. The calls are best guesses: nobody has heard a dinosaur.</p>
+    <p>Set in <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> and <a href="https://fonts.google.com/specimen/Reenie+Beanie">Reenie Beanie</a> (SIL Open Font License). The T. rex drawing and the dinosaur calls were made for this site. The calls are best guesses: nobody has heard a dinosaur. Names are spoken by <a href="https://huggingface.co/hexgrad/Kokoro-82M">Kokoro</a>, an open computer voice (Apache 2.0).</p>
   </section>`;

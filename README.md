@@ -19,7 +19,7 @@ then open http://localhost:8766
 - `timemachine.html` + `js/timemachine.js`: time machine, timeline, all dinosaurs.
 - `dino.html` + `js/dino.js`: the detail page, e.g. `dino.html?id=triceratops`.
 - `compare.html` + `js/compare.js`: compare two dinosaurs, e.g. `compare.html?a=tyrannosaurus&b=stegosaurus`.
-- `js/sound.js`: hearing names and best-guess calls, made in code. Recorded names go in `audio/names/`.
+- `js/sound.js`: best-guess calls, made in code, and the name button. Name clips are in `audio/names/`.
 - `js/globe-core.js`: the globe engine both pages share.
 - `globe.html` + `js/globe.js`: spinning globe and "Who lived near you". `js/earth.js` is the moving land (CC BY 4.0, credit required), `js/borders.js` today's country borders, `js/places.js` the list of places.
 - `js/size.js`: the people in size charts and the height box.
