@@ -19,11 +19,12 @@ then open http://localhost:8766
 - `timemachine.html` + `js/timemachine.js`: time machine, timeline, all dinosaurs.
 - `dino.html` + `js/dino.js`: the detail page, e.g. `dino.html?id=triceratops`.
 - `compare.html` + `js/compare.js`: compare two dinosaurs, e.g. `compare.html?a=tyrannosaurus&b=stegosaurus`.
+- `js/globe-core.js`: the globe engine both pages share.
 - `globe.html` + `js/globe.js`: spinning globe and "Who lived near you". `js/earth.js` is the moving land (CC BY 4.0, credit required), `js/borders.js` today's country borders, `js/places.js` the list of places.
 - `js/size.js`: the people in size charts and the height box.
 - `js/common.js`: shared pieces (timeline, cards, fallback silhouettes).
 - `images/silhouettes/` + `js/silhouettes.js`: PhyloPic drawings, with their scale and license.
-- `js/map.js`, `js/fossils.js`, `js/worldmap.js`: fossil map, its PaleobioDB data, and the coastlines.
+- `js/fossils.js`: PaleobioDB fossil data. `js/map.js` + `js/globe-detail.js`: the globe section on dinosaur pages.
 - `credits.html` + `js/credits.js`: credits, built from `js/silhouettes.js`. Keep this: two drawings require it.
 - `_silhouette-options.html`, `_refence_image/`: working files. Leave off the live site.
 

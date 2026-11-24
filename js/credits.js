@@ -22,10 +22,9 @@ document.getElementById("page").innerHTML = `
     }).join("")}</div>
   </section>
   <section class="panel">
-    <h2>Fossil map</h2>
+    <h2>Fossils</h2>
     <p>Fossil locations come from the <a href="https://paleobiodb.org/">Paleobiology Database</a>
-      (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>), downloaded in November 2026. We removed uncertain and out-of-date records.
-      Coastlines are from <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain).</p>
+      (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>), downloaded in November 2026. We removed uncertain and out-of-date records.</p>
   </section>
   <section class="panel" id="globe">
     <h2>Globe</h2>

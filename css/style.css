@@ -148,11 +148,16 @@ a.tl-row:hover .tl-label { text-decoration: underline; }
 .compare-links { display: flex; flex-wrap: wrap; gap: 8px; }
 
 /* ── Fossil map ── */
-.fossil-map { width: 100%; aspect-ratio: 360 / 144; display: block; background: var(--sky); }
-.fossil-map .land { fill: var(--sand); }
-.fossil-map circle { fill: #b8402c; fill-opacity: .85; stroke: var(--ivory); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
 .map-buttons { display: flex; gap: 6px; margin-bottom: 14px; }
-.map-places { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 20px; padding: 0; margin: 14px 0; }
+.map-places { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 18px; padding: 0; margin: 14px 0 20px; }
+.stage-detail { padding-top: clamp(24px, 4vw, 56px); padding-bottom: clamp(24px, 4vw, 56px); }
+.stage-detail .globe-wrap { max-width: min(78vh, 640px); }
+.stage-detail .when { min-height: 6.2em; }
+.stage-detail .map-buttons { flex-wrap: wrap; }
+.stage-detail .map-buttons button { background: none; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.stage-detail .map-buttons button:hover { background: var(--ivory); color: var(--ink); }
+.stage-detail .map-buttons button[aria-pressed="true"] { background: var(--ink); color: var(--ivory); }
+.stage-detail .button:hover { background: var(--ivory); }
 
 /* ── Globe ── */
 .stage-globe { position: relative; overflow: clip; background: var(--tint, var(--amber)); transition: background .5s; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 10px clamp(20px, 3vw, 50px); align-items: center; padding-top: clamp(14px, 2vw, 30px); padding-bottom: 34px; border-top: 3px solid var(--ink); }
@@ -235,6 +240,8 @@ a.tl-row:hover .tl-label { text-decoration: underline; }
   .globe-blurb { min-height: 0; }
   .globe-alive { min-height: 11em; }
   .globe-time { grid-row: 2; }
+  .stage-detail .globe-words { order: -1; }
+  .stage-detail .when { min-height: 0; }
   #labels a { font-size: 12px; }
   .near-list { grid-template-columns: minmax(0, 1fr); }
 }

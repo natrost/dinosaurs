@@ -150,7 +150,6 @@ function renderPage(d) {
     to: Math.max(TIME_END, Math.floor(newest - pad))
   });
   renderSize(d);
-  startFossilMap(d);
   fitGiant();
   document.fonts.ready.then(fitGiant);
 
