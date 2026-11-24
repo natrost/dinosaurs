@@ -91,7 +91,21 @@ a.tl-row:hover .tl-label { text-decoration: underline; }
 .hero-art .silhouette { width: 100%; height: auto; max-height: 56vh; display: block; overflow: visible; }
 .hero-words { display: grid; grid-template-columns: auto 1fr; gap: 0 clamp(20px, 5vw, 80px); align-items: end; margin-top: clamp(16px, 3vw, 40px); }
 .hero-words p { margin: 0; font-weight: 700; font-size: clamp(18px, 1.9vw, 25px); line-height: 1.25; }
-.hero-words .say { font: 400 clamp(38px, 5vw, 76px)/.8 var(--pen); -webkit-text-stroke: .4px currentColor; grid-row: span 2; transform: rotate(-2deg); }
+.hero-words .say { font: 400 clamp(38px, 5vw, 76px)/.8 var(--pen); -webkit-text-stroke: .4px currentColor; transform: rotate(-2deg); }
+.say-row { grid-row: span 2; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
+.say-button, .call-button { min-height: 46px; }
+.say-button:hover, .call-button:hover, .say-button.is-playing, .call-button.is-playing { background: var(--ivory); color: var(--ink); }
+.say-button[hidden] { display: none; }
+.call { background: var(--tint); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 20px clamp(24px, 5vw, 80px); align-items: center; padding-top: clamp(30px, 4vw, 60px); padding-bottom: clamp(30px, 4vw, 60px); }
+.call p { max-width: 34em; }
+.call-play canvas { width: 100%; height: clamp(90px, 12vw, 170px); display: block; margin-bottom: 10px; }
+.call-button { font-size: 18px; padding: 14px 22px; }
+.call-play .small { margin: 10px 0 0; font-weight: 600; }
+.sure { display: flex; align-items: center; gap: 12px; font-weight: 800; margin: 0; }
+.dots-row { display: flex; gap: 5px; }
+.dots-row i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--ink); }
+.dots-row i.on { background: var(--ink); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
 .fact { padding: 26px 18px 28px 0; display: grid; gap: 3px; align-content: start; }
 .fact-label { font-weight: 700; }
@@ -240,6 +254,7 @@ a.tl-row:hover .tl-label { text-decoration: underline; }
   .globe-blurb { min-height: 0; }
   .globe-alive { min-height: 11em; }
   .globe-time { grid-row: 2; }
+  .call { grid-template-columns: minmax(0, 1fr); }
   .stage-detail .globe-words { order: -1; }
   .stage-detail .when { min-height: 0; }
   #labels a { font-size: 12px; }

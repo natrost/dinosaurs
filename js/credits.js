@@ -33,6 +33,6 @@ document.getElementById("page").innerHTML = `
       Today’s country borders are from <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain); dashed lines are disputed or not agreed.</p>
   </section>
   <section class="panel">
-    <h2>Type and artwork</h2>
-    <p>Set in <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> and <a href="https://fonts.google.com/specimen/Reenie+Beanie">Reenie Beanie</a> (SIL Open Font License). The T. rex drawing was made for this site.</p>
+    <h2>Type, artwork and sound</h2>
+    <p>Set in <a href="https://fonts.google.com/specimen/Archivo">Archivo</a> and <a href="https://fonts.google.com/specimen/Reenie+Beanie">Reenie Beanie</a> (SIL Open Font License). The T. rex drawing and the dinosaur calls were made for this site. The calls are best guesses: nobody has heard a dinosaur.</p>
   </section>`;

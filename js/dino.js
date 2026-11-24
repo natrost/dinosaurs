@@ -80,7 +80,7 @@ function renderPage(d) {
       <h1 class="giant" data-period="${p.id}" aria-label="${d.name}"><span aria-hidden="true">${d.name}</span></h1>
       <div class="hero-art">${silhouetteSVG(d, "var(--ink)")}</div>
       <div class="hero-words">
-        <p class="say">${d.say}</p>
+        <div class="say-row"><p class="say">${d.say}</p><button type="button" class="button say-button" id="say-name" aria-label="Hear how to say ${d.name}" hidden>Hear it</button></div>
         <p class="meaning">It means “${d.meaning}”.</p>
         <p class="lived">${p.name}, about ${d.start} to ${d.end} million years ago</p>
       </div>
@@ -96,6 +96,8 @@ function renderPage(d) {
     </section>
 
     <section class="funfact panel"><strong>Fun fact:</strong> ${d.fact}</section>
+
+    ${callHTML(d)}
 
     <section class="panel">
       <h2>How big was it?</h2>
@@ -150,6 +152,7 @@ function renderPage(d) {
     to: Math.max(TIME_END, Math.floor(newest - pad))
   });
   renderSize(d);
+  startSounds(d);
   fitGiant();
   document.fonts.ready.then(fitGiant);
 
