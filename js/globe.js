@@ -78,6 +78,9 @@ const CAST = DINOS.map(d => {
   const crowd = s => sites.reduce((sum, o) => sum + (dot(s.v, o.v) > .985 ? o.n : 0), 0);
   return { d, sites, main: sites.slice().sort((a, b) => crowd(b) - crowd(a))[0], mid: Math.round((d.start + d.end) / 2) };
 });
+// The map data ends at 250 million years, so the slider's last two steps reuse that map.
+const MAP_END = EARTH.times[EARTH.times.length - 1];
+const existed = piece => Math.min(ma, MAP_END) <= piece.oldest;
 const isAlive = d => d.start >= ma && ma >= d.end;
 
 // ── State ────────────────────────────────────────────────────
@@ -146,7 +149,7 @@ function drawLand() {
   const step = .9, step2 = step * step;
   ctx.beginPath();
   for (const p of LAND) {
-    if (ma > p.oldest) continue;
+    if (!existed(p)) continue;
     let m = mats.get(p.plate);
     if (!m) mats.set(p.plate, m = plateMatrix(p.plate));
     const f = p.flat, n = f.length;
@@ -185,6 +188,35 @@ function drawLand() {
   ctx.lineWidth = Math.max(1.5, R * .0075);
   ctx.fill("nonzero"); ctx.stroke();
 }
+// ── Country borders, on today's map only ─────────────────────
+const borderPaths = lines => lines.map(l => { const out = []; let x = 0, y = 0; for (let i = 0; i < l.length; i += 2) { x += l[i]; y += l[i + 1]; out.push(...vec(y / 100, x / 100)); } return Float32Array.from(out); });
+const SETTLED = borderPaths(BORDERS.settled), UNSETTLED = borderPaths(BORDERS.unsettled), BROWN = "#b3976a";
+function drawBorders() {
+  // They appear as the continents arrive at today.
+  const show = Math.max(0, 1 - ma / 6);
+  if (!show) return;
+  const m = plateMatrix(EARTH.plates.length - 1); // the last plate never moves, so this is just our view
+  const trace = lines => {
+    ctx.beginPath();
+    for (const f of lines) {
+      let pen = false;
+      for (let i = 0; i < f.length; i += 3) {
+        const a = f[i], b = f[i + 1], c = f[i + 2];
+        if (m[6] * a + m[7] * b + m[8] * c <= 0) { pen = false; continue; }
+        const x = cx + R * (m[0] * a + m[1] * b + m[2] * c), y = cy - R * (m[3] * a + m[4] * b + m[5] * c);
+        if (pen) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+        pen = true;
+      }
+    }
+    ctx.stroke();
+  };
+  ctx.save();
+  ctx.globalAlpha = show; ctx.strokeStyle = BROWN; ctx.lineJoin = ctx.lineCap = "round";
+  ctx.lineWidth = Math.min(1.8, .9 + (zoom - 1) * .3);
+  trace(SETTLED);
+  ctx.setLineDash([4, 4]); trace(UNSETTLED);
+  ctx.restore();
+}
 function drawGrid() {
   ctx.lineWidth = 1; ctx.strokeStyle = "rgba(31,50,44,.16)"; ctx.beginPath();
   const line = f => { let pen = false; for (let k = 0; k <= 72; k++) { const [x, y, z] = toScreen(f(k)); if (z > 0) { pen ? ctx.lineTo(x, y) : ctx.moveTo(x, y); pen = true; } else pen = false; } };
@@ -196,9 +228,8 @@ function draw() {
   ctx.clearRect(0, 0, W, H);
   ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.fillStyle = SKY; ctx.fill();
   ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.clip();
-  drawGrid(); drawLand();
+  drawGrid(); drawLand(); drawBorders();
   ctx.restore();
-  ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.lineWidth = 4; ctx.strokeStyle = INK; ctx.stroke();
 
   // Fossil sites of everyone alive (or everyone, today)
   const shown = ma === 0 ? CAST : CAST.filter(o => isAlive(o.d));
@@ -216,7 +247,7 @@ function draw() {
   }
   drawLabels(ma === 0 ? (lit ? CAST.filter(o => o.d.id === lit) : []) : shown);
 
-  if (pin && ma <= pin.oldest) {
+  if (pin && existed(pin)) {
     const [x, y, z] = toScreen(placeNow(pin.v, pin.plate));
     if (z > 0 && inView(x, y)) {
       ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - 34); ctx.lineWidth = 3; ctx.strokeStyle = INK; ctx.stroke();
@@ -270,7 +301,7 @@ function drawLabels(shown) {
 function say() {
   $("time").value = 252 - Math.max(66, ma);
   const p = periodAt(ma), alive = CAST.filter(o => isAlive(o.d)), shownMa = Math.round(ma);
-  $("stage").style.setProperty("--tint", ma < 66 ? "var(--pink)" : p ? p.color : "var(--sand)");
+  $("stage").style.setProperty("--tint", ma < 66 || !p ? "var(--pink)" : p.color);
   $("ma").textContent = ma < 1 ? "Now" : shownMa;
   $("unit").textContent = ma < 1 ? "Every fossil site, on today's map" : `million years ago${p ? `, ${p.name}` : ""}`;
   $("blurb").textContent = ma < 66 ? "The continents have drifted to where you know them." : p ? p.blurb : "Just before the Triassic. No dinosaurs yet.";
@@ -413,7 +444,7 @@ canvas.addEventListener("pointerup", e => {
       // Find which land is there now, then where that spot is on today's map.
       let today = null;
       for (const p of LAND) {
-        if (ma > p.oldest) continue;
+        if (!existed(p)) continue;
         const v = turn(undo(plateTurn(p.plate, ma)), hit), [lat, lng] = latLng(v);
         if (inside(p, lat, lng)) { today = [lat, lng]; break; }
       }

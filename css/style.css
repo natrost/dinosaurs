@@ -155,7 +155,7 @@ a.tl-row:hover .tl-label { text-decoration: underline; }
 .map-places { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 20px; padding: 0; margin: 14px 0; }
 
 /* ── Globe ── */
-.stage-globe { position: relative; overflow: clip; background: var(--tint, var(--sand)); transition: background .5s; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 10px clamp(20px, 3vw, 50px); align-items: center; padding-top: clamp(14px, 2vw, 30px); padding-bottom: 34px; border-top: 3px solid var(--ink); }
+.stage-globe { position: relative; overflow: clip; background: var(--tint, var(--amber)); transition: background .5s; display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 10px clamp(20px, 3vw, 50px); align-items: center; padding-top: clamp(14px, 2vw, 30px); padding-bottom: 34px; border-top: 3px solid var(--ink); }
 .globe-sky { position: absolute; left: 0; top: 0; width: 100%; }
 .globe-wrap { position: relative; aspect-ratio: 1; width: 100%; max-width: 78vh; justify-self: center; pointer-events: none; }
 .globe-words, .globe-time { position: relative; z-index: 1; }
