@@ -117,28 +117,37 @@
 .crayon[aria-pressed="true"] { transform: translateY(-20px); }
 .tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 
-/* ── Mixed-up bones ── */
-.bones { background: var(--ink); color: var(--ivory); padding-top: clamp(60px, 8vw, 140px); padding-bottom: clamp(50px, 7vw, 120px); }
-.bones h2 { max-width: 14ch; font-size: clamp(42px, 7.6vw, 140px); color: var(--amber); margin-bottom: .3em; }
-.crate { font-size: clamp(18px, 1.8vw, 32px); max-width: 44ch; }
-.first { margin: 4vw calc(var(--pad) * -1) 0; }
-.stage { position: relative; height: clamp(300px, 44vw, 720px); display: flex; overflow: hidden; }
-.col { border: 0; padding: 0; margin: 0; font: inherit; color: inherit; background: var(--c2); cursor: pointer; position: relative; transition: width .55s cubic-bezier(.3, 1.3, .5, 1), background .4s; flex: none; }
-.col + .col { border-left: 3px solid var(--ink); }
-.col:hover { filter: brightness(1.06); }
-.col:focus-visible { outline: 5px solid var(--ivory); outline-offset: -10px; }
-.col span { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--ivory); border-radius: 99px; font: 700 clamp(12px, 1.1vw, 17px)/1.2 var(--label); padding: 9px 18px; white-space: nowrap; }
-.stage svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
-.part { animation: drop .5s cubic-bezier(.25, 1.4, .4, 1); }
-@keyframes drop { from { translate: 0 -60px; opacity: 0; } }
-.real .col { background: var(--ivory); }
-.namebar { padding: 26px var(--pad) 0; display: grid; grid-template-columns: 1fr auto; gap: 12px 3vw; align-items: center; }
-.mixname { grid-column: 1 / -1; max-width: none; margin: 0; font: 900 60px/1 var(--label); text-transform: uppercase; white-space: nowrap; justify-self: start; display: inline-block; letter-spacing: -.02em; }
-.mixname i { font-style: normal; color: var(--u2, var(--u)); }
-.bones .verdict { margin: 0; font-size: clamp(17px, 1.6vw, 26px); line-height: 1.3; max-width: 60ch; min-height: 2.6em; }
-.go { font: 900 clamp(20px, 1.9vw, 32px)/1 var(--label); background: var(--amber); color: var(--ink); border: 0; border-radius: 99px; padding: 18px 36px; cursor: pointer; }
-.go:hover, .go:focus-visible { background: var(--ivory); }
-.odds { max-width: none; margin: 0; font-size: clamp(26px, 4.6vw, 86px); line-height: 1.05; text-align: center; padding: 7vw 0 0; }
+/* ── The dig ── */
+.dig { background: #d9b27c; padding-top: clamp(60px, 7vw, 120px); padding-bottom: clamp(50px, 6vw, 110px); }
+.dig-words { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 30px; }
+.dig-words h2 { font-size: clamp(38px, 5.4vw, 96px); margin-bottom: .3em; }
+.dig-words p { margin: 0 0 1em; font-size: clamp(19px, 1.9vw, 34px); }
+.dig-wrap { position: relative; width: min(100%, 76svh * 16 / 9); margin: 0 auto; }
+.dig-site { position: relative; aspect-ratio: 16 / 9; border: max(6px, calc(var(--u) * 10)) solid var(--ink); background: #4d3626; overflow: hidden; isolation: isolate; }
+.dig-site canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#dig-dirt { touch-action: none; transition: opacity 1.1s; filter: drop-shadow(0 3px 2px rgba(0, 0, 0, .45)); }
+.dig-site.is-found #dig-dirt { opacity: 0; pointer-events: none; }
+#dig-dust { pointer-events: none; }
+.dig-brush { position: absolute; left: 0; top: 0; z-index: 2; width: clamp(58px, 7vw, 120px); pointer-events: none; opacity: 0; transition: opacity .15s; transform-origin: 8% 92%; }
+.dig-site.is-brushing .dig-brush, .dig-site.is-hover .dig-brush { opacity: 1; }
+@media (hover: hover) { .dig-site:not(.is-found) #dig-dirt { cursor: none; } }
+.dig-found { margin-top: 18px; padding: clamp(16px, 2vw, 32px); border-radius: 8px; background: #fdfdfd; box-shadow: 0 4px 14px rgba(0, 0, 0, .2); text-align: center; animation: dig-up .6s .5s cubic-bezier(.2, 1.2, .4, 1) both; }
+.dig:has(.is-found) .dig-bar { display: none; }
+@keyframes dig-up { from { transform: translateY(40px); opacity: 0; } }
+.dig-found p { margin: 0 auto; max-width: 44ch; }
+.dig-found h3 { margin: 0 0 .25em; font-size: clamp(32px, 4vw, 66px); }
+.dig-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+.dig-found[hidden] { display: none; }
+.dig-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 10px 22px; margin-top: 18px; }
+.dig-meter { height: 26px; border: 2px solid var(--ink); border-radius: 99px; background: #fff; overflow: hidden; }
+.dig-meter i { display: block; width: 0; height: 100%; background: var(--clay); transition: width .25s; }
+.dig-status { margin: 0; min-width: 9ch; text-align: right; }
+.dig-case { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 44%), 1fr)); gap: clamp(10px, 1.2vw, 20px); list-style: none; margin: clamp(24px, 3vw, 48px) 0 24px; padding: 0; }
+.dig-case li { display: grid; gap: 8px; padding: 14px; border-radius: 8px; text-align: center; background: rgba(255, 255, 255, .28); font: 700 clamp(14px, 1.1vw, 18px)/1.2 var(--label); }
+.dig-case img { width: 100%; height: auto; aspect-ratio: 5 / 2; object-fit: contain; }
+.dig-case li:not(.is-got) img { filter: brightness(0); opacity: .16; }
+.dig-case .is-got { background: #fdfdfd; box-shadow: 0 4px 10px rgba(0, 0, 0, .1); }
+.dig > .small { max-width: none; margin: 0; }
 .home .site-footer { margin-top: 0; border-top: 1px solid #444; }
 
 @media (max-width: 760px) {
@@ -159,8 +168,10 @@
   .walk-say { padding: 24svh 24px var(--strip); }
   .walk-say h2 { font-size: 54px; }
   .walk-you svg { height: 22svh; }
-  .namebar { grid-template-columns: 1fr; }
-  .go { justify-self: stretch; }
-  .col span { padding: 7px 10px; }
+  .dig-wrap { width: 100%; }
+  .dig-site { aspect-ratio: 1; }
+  .dig-bar { grid-template-columns: 1fr auto; }
+  .dig-meter { grid-column: 1 / -1; }
+  .dig-status { text-align: left; }
 }
-@media (prefers-reduced-motion: reduce) { .star *, .part { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .star *, .dig-found { animation: none !important; } }

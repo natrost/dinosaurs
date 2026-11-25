@@ -15,7 +15,7 @@ then open http://localhost:8766
 - `css/tokens.css`: **colors and fonts for every page.** Figma values go here. (Period colors are also in `js/data.js`.)
 - `css/home.css`, `css/style.css`: the homepage, and all the other pages.
 - `images/art/trex-pencil.png`: the T. rex on the homepage. Replace it with another transparent drawing of the same shape (1227 × 661).
-- `index.html` + `js/home.js`, `js/color-in.js`, `js/mix.js`: homepage (cover star, long walk timeline, coloring in, mixed-up bones). `js/paths.js` holds the outlines it needs.
+- `index.html` + `js/home.js`, `js/color-in.js`, `js/bones.js`: homepage (cover star, long walk timeline, coloring in, the dig). Skeletons are in `images/bones`.
 - `timemachine.html` + `js/timemachine.js`: time machine, timeline, all dinosaurs.
 - `dino.html` + `js/dino.js`: the detail page, e.g. `dino.html?id=triceratops`.
 - `compare.html` + `js/compare.js`: compare two dinosaurs, e.g. `compare.html?a=tyrannosaurus&b=stegosaurus`.

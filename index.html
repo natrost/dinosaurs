@@ -71,11 +71,27 @@
       <div class="crayonbox"><div class="crayons" id="crayons"></div><div class="tools"><button type="button" class="button" id="auto">Color it for me</button><button type="button" class="button" id="wipe">Start over</button><button type="button" class="button" id="put">Put the crayon down</button></div></div>
     </section>
 
-    <section class="bones bleed">
-      <h2>Uh-oh. Somebody mixed up the bones.</h2>
-      <p class="crate">Swap the tail, the body and the head until you build something that really lived.</p>
-      <div class="first" id="first"><div class="stage" id="stage"><button type="button" class="col" data-k="0"><span></span></button><button type="button" class="col" data-k="1"><span></span></button><button type="button" class="col" data-k="2"><span></span></button><svg id="beast" aria-hidden="true"></svg></div><div class="namebar"><p class="mixname" id="mixname"></p><p class="verdict" id="verdict" aria-live="polite"></p><button type="button" class="go" id="go">Shuffle</button></div></div>
-      <p class="odds" id="odds"></p>
+    <section class="dig bleed" id="dig">
+      <div class="dig-words">
+        <h2>Something’s buried here.</h2>
+        <p>Brush away the dirt and find out who it is.</p>
+      </div>
+      <div class="dig-wrap">
+      <div class="dig-site" id="dig-site">
+        <canvas id="dig-bones" aria-hidden="true"></canvas>
+        <canvas id="dig-dirt" aria-hidden="true"></canvas>
+        <canvas id="dig-dust" aria-hidden="true"></canvas>
+        <svg class="dig-brush" id="dig-brush" viewBox="0 0 120 120" aria-hidden="true"><path d="M112 8 62 58" stroke="#000" stroke-width="15" stroke-linecap="round"/><path d="M112 8 62 58" stroke="#e87350" stroke-width="9" stroke-linecap="round"/><path d="M70 66 54 50 43 61 59 77Z" fill="#cfd2cf" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M43 61Q24 70 6 100Q2 112 14 114Q44 106 59 77Z" fill="#f0a62f" stroke="#000" stroke-width="3" stroke-linejoin="round"/><path d="M40 72 18 104M47 76 28 106" stroke="#000" stroke-width="2"/></svg>
+      </div>
+      <div class="dig-found" id="dig-found" role="status" hidden><p>You found</p><h3 id="dig-name"></h3><p id="dig-fact"></p><div class="dig-buttons"><a class="button" id="dig-go"></a><button type="button" class="button" id="dig-next">Dig somewhere else</button></div></div>
+      </div>
+      <div class="dig-bar">
+        <div class="dig-meter" aria-hidden="true"><i id="dig-fill"></i></div>
+        <p class="dig-status" id="dig-status" aria-live="polite"></p>
+        <button type="button" class="button" id="dig-all">Dust it all off</button>
+      </div>
+      <ol class="dig-case" id="dig-case" aria-label="Skeletons you’ve found"></ol>
+      <p class="small">A whole skeleton is a rare find. Real ones are usually jumbled, with lots of bones missing.</p>
     </section>
   </main>
 
@@ -85,9 +101,8 @@
   <script src="js/silhouettes.js"></script>
   <script src="js/common.js"></script>
   <script src="js/size.js"></script>
-  <script src="js/paths.js"></script>
   <script src="js/home.js"></script>
   <script src="js/color-in.js"></script>
-  <script src="js/mix.js"></script>
+  <script src="js/bones.js"></script>
 </body>
 </html>

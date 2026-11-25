@@ -26,6 +26,7 @@ main { margin: 0 auto; padding: 0 var(--pad); }
 .white-bar { width: 100vw; margin-left: calc(50% - 50vw); padding: clamp(20px, 2vw, 36px) var(--pad); background: #fff; border-top: max(6px, calc(var(--u) * 10)) solid var(--ink); border-bottom: 2px solid var(--ink); }
 
 .button, .jump button, .map-buttons button { display: inline-block; font: 700 clamp(14px, 1.05vw, 18px)/1.2 var(--label); color: var(--ink); background: none; text-decoration: none; border: 2px solid var(--ink); border-radius: 99px; padding: 11px 20px; cursor: pointer; }
+.button[hidden] { display: none; }
 .button:hover, .jump button:hover, .map-buttons button:hover, .map-buttons button[aria-pressed="true"] { background: var(--ink); color: var(--ivory); }
 
 .chips { display: flex; flex-wrap: wrap; gap: 2px 14px; }
