@@ -1,7 +1,6 @@
 /* The dinosaur page's header, hero and facts, from the Figma design.
    Positions are in the design's own pixels: --u is one of them, on a 1440-wide page, and x is measured from the middle. */
-@font-face { font-family: "TAY Amaya"; src: local("TAY Amaya"), url("../fonts/TAYAmaya.otf") format("opentype"); font-display: swap; }
-.club { --ivory: #ebebe1; --u: calc(min(100vw, 1800px) / 1440); --edge: max(calc(var(--u) * 32), calc(50vw - var(--u) * 688)); --black: #000; --display: "bookmania", "Bookman Old Style", Georgia, serif; --label: "gotham", "Archivo", sans-serif; position: relative; }
+.club { --ivory: #ebebe1; --u: calc(min(100vw, 1800px) / 1440); --edge: max(calc(var(--u) * 32), calc(50vw - var(--u) * 688)); --black: #000; --display: "bookmania", "Bookman Old Style", Georgia, serif; --label: "gotham", "Archivo", sans-serif; --type: "bulletin-typewriter-mn", "Bulletin Typewriter MN", "American Typewriter", "Courier New", monospace; position: relative; }
 /* Paper grain */
 .club::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--ivory) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .2 0 0 0 0 .15 0 0 0 .055 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"); }
 body.club { background: none; }
@@ -17,57 +16,104 @@ html:has(.club) { background: #ebebe1; }
 .club-art { position: absolute; inset: 0; z-index: -1; }
 .club-art > * { position: absolute; left: calc(50% + var(--u) * (var(--x) - 720)); top: calc(var(--u) * (var(--y) - var(--y0))); width: calc(var(--u) * var(--w)); height: calc(var(--u) * var(--h)); }
 .club-circle { --x: 324; --y: 392; --w: 792; --h: 792; border-radius: 50%; background: var(--tint); mix-blend-mode: multiply; }
-.club-prints { --x: -133; --y: 169; --w: 1718.81; --h: 1126.51; background: var(--tint); -webkit-mask: url("../images/hero/footprints.svg") 0 0 / 100% 100%; mask: url("../images/hero/footprints.svg") 0 0 / 100% 100%; }
 .club-word { --x: -147; --y: 479; --w: 1; --h: 600; font: 900 calc(var(--u) * 600)/1 var(--label); text-transform: uppercase; white-space: nowrap; color: #fff; }
 /* Two copies side by side: after moving by one copy, the loop starts again without a jump. */
 .club-word div { display: flex; width: max-content; animation: club-word var(--loop, 50s) linear infinite; will-change: transform; }
 .club-word span { padding-right: .32em; }
 @keyframes club-word { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .club-word div { animation: none; } }
-.club-print { background: var(--tint); -webkit-mask: 0 0 / 100% 100%; mask: 0 0 / 100% 100%; }
-.club-print-1 { --x: 1200; --y: 262; --w: 330; --h: 330; rotate: 14deg; }
-.club-print-2 { --x: -100; --y: 930; --w: 330; --h: 330; rotate: 14deg; }
+/* Plants of the dinosaur's time, leaning in from the sides (behind the dinosaur, in front of the big word) */
+.club-plant { background: var(--tint); -webkit-mask: 0 0 / 100% 100%; mask: 0 0 / 100% 100%; }
+/* The right-hand plant is measured from the browser's right edge (--r), so its stem always starts off the page. */
+.club-art > .club-plant-1 { --r: -118; --y: 53; --w: 350; --h: 656; left: auto; right: calc(var(--u) * var(--r)); rotate: -140deg; }
+.club-art > .club-plant-1.is-seedfern { --r: -73; --y: 81; --w: 290; --h: 544; rotate: -158deg; }
+.club-art > .club-plant-1.is-palm { --r: -62; --y: 52; --w: 440; --h: 587; rotate: -135deg; }
+.club-plant-2 { --x: -62; --y: 760; --w: 340; --h: 691; rotate: 5deg; }
+.club-plant-2.is-flower { --x: -80; rotate: 8deg; }
+.is-cycad { -webkit-mask-image: url("../images/hero/plant-cycad.svg"); mask-image: url("../images/hero/plant-cycad.svg"); }
+.is-horsetail { -webkit-mask-image: url("../images/hero/plant-horsetail.svg"); mask-image: url("../images/hero/plant-horsetail.svg"); }
+.is-ginkgo { -webkit-mask-image: url("../images/hero/plant-ginkgo.svg"); mask-image: url("../images/hero/plant-ginkgo.svg"); }
+.is-fern { -webkit-mask-image: url("../images/hero/plant-fern.svg"); mask-image: url("../images/hero/plant-fern.svg"); }
+.is-seedfern { -webkit-mask-image: url("../images/hero/plant-seedfern.svg"); mask-image: url("../images/hero/plant-seedfern.svg"); }
+.is-conifer { -webkit-mask-image: url("../images/hero/plant-conifer.svg"); mask-image: url("../images/hero/plant-conifer.svg"); }
+.is-palm { -webkit-mask-image: url("../images/hero/plant-palm.svg"); mask-image: url("../images/hero/plant-palm.svg"); }
+.is-flower { -webkit-mask-image: url("../images/hero/plant-flower.svg"); mask-image: url("../images/hero/plant-flower.svg"); }
 .club-shape { --x: 130; --y: 520; --w: 1180; --h: 850; }
 .club-shape svg { width: 100%; height: 100%; display: block; }
 .club-crown { --x: 332; --y: 315.5; --w: 128.93; --h: 77.5; background: var(--tint); -webkit-mask: url("../images/hero/crown.svg") 0 0 / 100% 100%; mask: url("../images/hero/crown.svg") 0 0 / 100% 100%; }
 
-.club-name { position: absolute; left: calc(50% - var(--u) * 690); top: calc(var(--u) * 58); margin: 0; font: 900 calc(var(--u) * 80)/1 var(--display); letter-spacing: 0; white-space: nowrap; }
-.club-say { position: absolute; left: calc(50% - var(--u) * 688); top: calc(var(--u) * 149); display: flex; align-items: center; gap: calc(var(--u) * 12); margin: 0; font: 400 calc(var(--u) * 30)/1 "TAY Amaya", "Archivo", sans-serif; text-transform: uppercase; }
+.club-time { position: absolute; left: calc(50% - var(--u) * 688); top: calc(var(--u) * 37); display: flex; align-items: center; margin: 0; font: 500 max(12px, calc(var(--u) * 14))/1.2 var(--label); white-space: pre-wrap; }
+.club-time b { font-weight: 700; }
+.club-time i { flex: none; width: .86em; height: .86em; margin-right: .5em; border-radius: 50%; background: var(--tint); }
+.club-name { position: absolute; left: calc(50% - var(--u) * 690); top: calc(var(--u) * 67); margin: 0; font: 900 calc(var(--u) * 100)/1 var(--display); letter-spacing: 0; white-space: nowrap; }
+.club-say { position: absolute; left: calc(50% - var(--u) * 687); top: calc(var(--u) * 184); display: flex; align-items: center; gap: calc(var(--u) * 10); margin: 0; min-height: calc(var(--u) * 32); font: 400 max(16px, calc(var(--u) * 24))/1 var(--type); }
+.club-meaning { position: absolute; right: calc(50% - var(--u) * 451); top: calc(var(--u) * 225); width: calc(var(--u) * 354); margin: 0; text-align: right; font: italic 900 calc(var(--u) * 40)/1 var(--display); }
 .club-say button { position: relative; flex: none; width: calc(var(--u) * 32); height: calc(var(--u) * 32); padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; }
 .club-say button::after { content: ""; position: absolute; inset: 50%; width: 46px; height: 46px; margin: -23px; }
 .club-say button[hidden] { display: none; }
 .club-say img { display: block; width: 100%; height: 100%; }
 .club-say button:hover, .club-say button.is-playing { background: var(--tint); }
-.club-meaning { position: absolute; right: calc(50% - var(--u) * 454); top: calc(var(--u) * 192); width: calc(var(--u) * 448); text-align: right; font: italic 900 calc(var(--u) * 32)/1 var(--display); }
-.club-meaning p { margin: 0; }
 
-.club-facts { position: relative; width: 100vw; margin-left: calc(50% - 50vw); color: var(--black); overflow-x: clip; padding: calc(var(--u) * 33) 0 calc(var(--u) * 24); margin-top: calc(var(--u) * -33); }
-.club-row { margin: 0 var(--edge); min-height: calc(var(--u) * 170); padding: calc(var(--u) * 33) calc(var(--u) * 170) calc(var(--u) * 24) 0; border-top: calc(var(--u) * 10) solid var(--black); border-bottom: 2px solid var(--black); display: flex; gap: 24px calc(var(--u) * 93); }
-.club-fact h2 { margin: 0 0 calc(var(--u) * 16); font: 800 max(14px, calc(var(--u) * 20))/1.2 var(--label); letter-spacing: 0; text-transform: uppercase; white-space: nowrap; }
-.club-fact p { margin: 0; font: 900 max(24px, calc(var(--u) * 36))/1 var(--display); }
-.club-fact:not(:last-child) p:first-of-type { white-space: nowrap; }
-.club-fact .note { font: 500 max(14px, calc(var(--u) * 16))/1.25 var(--label); margin-top: 6px; }
-.club-fact:last-child { margin-left: calc(var(--u) * 32); }
-.club-globe { position: absolute; left: calc(50% + var(--u) * 531); top: 0; width: calc(var(--u) * 225); height: calc(var(--u) * 221); border-radius: 50%; }
-.club .photos { margin-top: calc(var(--u) * 30); }
-.club-globe img, .club-globe canvas { display: block; width: 100%; height: 100%; }
+
+.club-facts { position: relative; width: 100vw; margin-left: calc(50% - 50vw); margin-top: calc(var(--u) * -10); color: var(--black); background: #fff; border-top: calc(var(--u) * 10) solid var(--black); border-bottom: 2px solid var(--black); }
+.club-row { width: calc(var(--u) * 1376); min-height: calc(var(--u) * 118); margin: 0 auto; padding: calc(var(--u) * 29) 0 calc(var(--u) * 22); display: grid; grid-template-columns: 177fr 252fr 461fr 486fr; }
+.club-fact h2 { margin: 0 0 calc(var(--u) * 8); font: 900 max(13px, calc(var(--u) * 16))/1.2 var(--label); letter-spacing: 0; text-transform: uppercase; white-space: nowrap; }
+.club-fact p { margin: 0; font: 400 max(22px, calc(var(--u) * 36))/1 var(--type); }
+.club-fact .note { font-size: max(14px, calc(var(--u) * 16)); margin-top: 6px; max-width: calc(var(--u) * 260); }
+/* The globe's bottom edge is cut off by the line under the facts. */
+.club-globe { position: absolute; left: calc(50% + var(--u) * 12); bottom: 0; width: calc(var(--u) * 175); height: calc(var(--u) * 148); overflow: hidden; border-radius: calc(var(--u) * 87) calc(var(--u) * 87) 0 0; }
+.club-globe img, .club-globe canvas { display: block; width: calc(var(--u) * 175); height: calc(var(--u) * 172); border-radius: 50%; }
+
+/* The pictures: white cards that fit each picture, centered on one another, with the next ones peeking in from the sides */
+.club .photos { margin-top: calc(var(--u) * 34); margin-bottom: 0; color: var(--black); }
+.club .photo-track { --tall: calc(var(--u) * 748); --card: calc(var(--u) * 24); gap: calc(var(--u) * 40); align-items: center; padding: 4px max(20px, calc(50vw - var(--u) * 585)) 24px; }
+.club .photo { width: min(calc(var(--tall) * var(--ratio) + var(--card) * 2), calc(var(--u) * 1170)); padding: var(--card); border-radius: 8px; background: #fdfdfd; box-shadow: 0 4px 10px rgba(0, 0, 0, .1); box-sizing: border-box; }
+.club .photo img, .club .photo .placeholder { height: auto; aspect-ratio: var(--ratio); border-radius: 4px; }
+.club .photo:not(.is-on):not(:only-child) > :first-child { opacity: 1; }
+.club .photo figcaption { margin-top: calc(var(--u) * 16); font: 400 max(14px, calc(var(--u) * 16))/1.15 var(--type); }
+.club .photo .by { font-size: inherit; opacity: 1; }
+.club .photo-nav { justify-content: center; gap: calc(var(--u) * 39); margin-top: calc(var(--u) * 16); }
+.club .photo-nav button { flex: none; width: max(48px, calc(var(--u) * 64)); aspect-ratio: 1; padding: 0; border: 2px solid var(--black); border-radius: 50%; background: none; color: inherit; cursor: pointer; }
+.club .photo-nav svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2.5; }
+.club .photo-nav button:hover { background: var(--black); color: var(--ivory); }
+.photo-total { font: 900 max(26px, calc(var(--u) * 40))/1 var(--display); }
+.unseen { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.club-fun { --size: 120; margin: calc(var(--u) * 136) 0 calc(var(--u) * 110) calc(50% - var(--u) * 614); width: calc(var(--u) * 1228); color: var(--black); text-align: center; }
+.club-fun.is-medium { --size: 104; }
+.club-fun.is-long { --size: 88; }
+.club-fun h2 { margin: 0 0 8px; font: 900 max(13px, calc(var(--u) * 16))/1.2 var(--label); letter-spacing: 0; text-transform: uppercase; }
+.club-fun p { margin: 0; font: 400 calc(var(--u) * var(--size))/1 var(--type); }
 
 @media (max-width: 760px) {
   .club { --u: calc(100vw / 1240); --edge: 20px; }
   .club-header { min-height: 0; padding: 14px 0 12px; align-items: center; }
   .club-nav { gap: 0 16px; max-width: 220px; font-size: 13px; }
   .club-hero { --y0: 296; height: auto; padding-top: 22px; }
-  .club-name, .club-say, .club-meaning { position: static; margin-left: var(--edge); margin-right: var(--edge); width: auto; }
-  .club-name { font-size: min(60px, calc((100vw - 40px) / var(--len) / .6)); white-space: normal; }
-  .club-say { font-size: 25px; gap: 10px; margin-top: 10px; }
   .club-say button { width: 34px; height: 34px; }
-  .club-meaning { margin-top: 14px; text-align: left; font-size: 22px; line-height: 1.1; }
   .club-art { position: relative; inset: auto; height: calc(var(--u) * 1110); margin-top: 16px; }
-  .club-print-1 { --x: 1085; }
-  .club-print-2 { --x: -20; }
-  .club-facts { margin-top: 0; padding: 30px 0 10px; }
-  .club-row { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 22px 34px; padding: 22px 0; border-top-width: 6px; }
-  .club-fact:last-child { grid-column: 1 / -1; padding-right: 110px; margin-left: 0; }
+  .club-time, .club-name, .club-say, .club-meaning { position: static; margin-left: var(--edge); margin-right: var(--edge); width: auto; }
+  .club-name { margin-top: 8px; font-size: min(60px, calc((100vw - 40px) / var(--len) / .6)); white-space: normal; }
+  .club-say { margin-top: 10px; gap: 10px; min-height: 34px; font-size: 19px; }
+  .club-meaning { margin-top: 12px; text-align: left; font-size: 24px; line-height: 1.1; }
+  .club-art > .club-plant-1 { --r: -74; --y: 264; --w: 300; --h: 562; }
+  .club-art > .club-plant-1.is-seedfern { --r: -74; --y: 264; --w: 300; --h: 562; rotate: -140deg; }
+  .club-art > .club-plant-1.is-palm { --r: -60; --y: 254; --w: 380; --h: 507; }
+  .club-plant-2 { --x: 35; --y: 820; --w: 300; --h: 609; }
+  .club-plant-2.is-flower { --x: 20; }
+  .club-facts { margin-top: 0; border-top-width: 6px; }
+  .club-row { width: auto; margin: 0 var(--edge); padding: 22px 0; grid-template-columns: auto auto; justify-content: start; gap: 22px 40px; }
   .club-fact h2 { margin-bottom: 6px; }
-  .club-globe { left: auto; right: -30px; top: auto; bottom: 22px; width: 130px; height: 128px; }
+  .club-fact .note { max-width: none; }
+  .club-fact:last-child { grid-column: 1 / -1; padding-right: 130px; }
+  .club-globe { left: auto; right: 12px; width: 130px; height: 110px; border-radius: 65px 65px 0 0; }
+  .club-globe img, .club-globe canvas { width: 130px; height: 128px; }
+  .club .photos { margin-top: 22px; }
+  .club .photo-track { --tall: min(62vw, 420px); --card: 12px; gap: 14px; padding-left: 20px; padding-right: 20px; }
+  .club .photo { width: min(calc(var(--tall) * var(--ratio) + var(--card) * 2), calc(100vw - 40px)); }
+  .club .photo figcaption { margin-top: 10px; }
+  .club .photo-nav { gap: 22px; margin-top: 8px; }
+  .club-fun { margin: 60px 0 54px; width: auto; }
+  .club-fun p, .club-fun.is-medium p, .club-fun.is-long p { font-size: clamp(34px, 10.4vw, 54px); }
+  .club-fun.is-long p { font-size: clamp(30px, 8.4vw, 44px); }
 }

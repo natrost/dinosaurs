@@ -29,59 +29,88 @@ function placeholderSVG(d, x) {
 }
 function photosHTML(d) {
   const real = PHOTOS[d.id] || [], list = real.length ? real : PLACEHOLDERS;
+  // So the row can go round and round, the set is there three times. The outer two are copies, hidden from screen readers and the Tab key.
+  const slide = (x, i, copy) => `
+        <figure class="photo" ${copy ? `aria-hidden="true"` : `role="group" aria-roledescription="slide" aria-label="${i + 1} of ${list.length}"`} style="--ratio:${(x.w / x.h).toFixed(4)}">
+          ${real.length
+            ? `<img${x.cut ? ` class="cut"` : ""} src="images/photos/${x.file}" width="${x.w}" height="${x.h}" alt="${copy ? "" : x.alt}" ${copy || i > 1 ? `loading="lazy"` : ""} draggable="false">
+          <figcaption>${x.kind}: ${x.alt} <span class="by">${x.by}${x.page ? ` · <a href="${x.licurl || x.page}"${copy ? ` tabindex="-1"` : ""}>${x.lic}</a> · <a href="${x.page}"${copy ? ` tabindex="-1"` : ""}>Source</a>` : ""}</span></figcaption>`
+            : `${placeholderSVG(d, x)}
+          <figcaption>${x.name} <span class="by">Photo to come</span></figcaption>`}
+        </figure>`;
+  const set = copy => list.map((x, i) => slide(x, i, copy)).join("");
   return `
     <section class="photos bleed" style="--tint:${periodOf(d).color}" aria-roledescription="carousel" aria-label="Pictures of ${d.name}">
-      <div class="photo-track" id="photo-track" tabindex="0">${list.map((x, i) => `
-        <figure class="photo${i ? "" : " is-on"}" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${list.length}" style="--ratio:${(x.w / x.h).toFixed(4)}">
-          ${real.length
-            ? `<img${x.cut ? ` class="cut"` : x.w / x.h > 1.75 ? ` class="whole"` : ""} src="images/photos/${x.file}" width="${x.w}" height="${x.h}" alt="${x.alt}" ${i > 1 ? `loading="lazy"` : ""} decoding="async" draggable="false">
-          <figcaption><strong>${x.kind}</strong> ${x.alt} <span class="by">${x.by}${x.page ? ` · <a href="${x.licurl || x.page}">${x.lic}</a> · <a href="${x.page}">Source</a>` : ""}</span></figcaption>`
-            : `${placeholderSVG(d, x)}
-          <figcaption><strong>${x.name}</strong> Photo to come</figcaption>`}
-        </figure>`).join("")}</div>
+      <div class="photo-track" id="photo-track" tabindex="0">${list.length > 1 ? set(true) + set(false) + set(true) : set(false)}</div>
       ${list.length > 1 ? `<div class="photo-nav">
-        <button type="button" class="button" id="photo-prev" aria-label="Previous picture">←</button>
-        <button type="button" class="button" id="photo-next" aria-label="Next picture">→</button>
-        <span id="photo-count" aria-live="polite"></span>
+        <button type="button" id="photo-prev" aria-label="Previous picture"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M37 21 26 32 37 43"/></svg></button>
+        <span class="photo-total">${list.length} ${real.length && real.every(x => x.page && x.kind !== "Artwork") ? "Photos" : "Pictures"}</span>
+        <button type="button" id="photo-next" aria-label="Next picture"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M27 21 38 32 27 43"/></svg></button>
+        <span id="photo-count" class="unseen" aria-live="polite"></span>
       </div>` : ""}
     </section>`;
 }
 function startPhotos() {
   const track = document.getElementById("photo-track"), prev = document.getElementById("photo-prev"), next = document.getElementById("photo-next"), count = document.getElementById("photo-count");
   if (!track || !next) return;
-  const slides = [...track.children];
-  let at = -1, aim = -1, timer = 0;
-  const middle = el => el.offsetLeft + el.offsetWidth / 2;
+  const slides = [...track.children], n = slides.length / 3;
+  let at = -1, timer = 0, frame = 0, touching = false;
+  const spot = i => slides[i].offsetLeft + slides[i].offsetWidth / 2 - track.clientWidth / 2;
+  // Snapping is only on while someone swipes; otherwise the browser tugs the row back when it hops.
+  const snap = on => { track.style.scrollSnapType = on ? "" : "none"; };
   const show = i => {
     if (i === at) return;
     at = i;
-    count.textContent = `${i + 1} of ${slides.length}`;
-    prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+    count.textContent = `${i % n + 1} of ${n}`;
     slides.forEach((s, j) => s.classList.toggle("is-on", j === i));
   };
-  const go = i => {
-    aim = Math.max(0, Math.min(slides.length - 1, i));
-    track.scrollTo({ left: middle(slides[aim]) - track.clientWidth / 2, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-    show(aim);
+  // On a copy? Hop to the same picture in the middle set. Everything around it is identical, so nothing seems to move.
+  const recenter = () => {
+    const hop = at < n ? n : at >= 2 * n ? -n : 0;
+    if (!hop) return;
+    track.scrollLeft += Math.sign(hop) * (slides[n].offsetLeft - slides[0].offsetLeft);
+    show(at + hop);
+  };
+  const stop = () => { cancelAnimationFrame(frame); frame = 0; };
+  const go = step => {
+    stop(); clearTimeout(timer); snap(false); recenter();
+    show(at + step);
+    const from = track.scrollLeft, far = spot(at) - from, t0 = performance.now(), time = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 480;
+    const tick = now => {
+      const t = time ? Math.max(0, Math.min(1, (now - t0) / time)) : 1;
+      track.scrollLeft = from + far * (1 - (1 - t) ** 3);
+      frame = t < 1 ? requestAnimationFrame(tick) : 0;
+      if (!frame) recenter();
+    };
+    frame = requestAnimationFrame(tick);
   };
   // After a swipe, the picture nearest the middle is the current one.
   const settle = () => {
-    if (aim >= 0) { aim = -1; return; }
-    const c = track.scrollLeft + track.clientWidth / 2;
+    if (touching || frame) return;
     let best = 0;
-    slides.forEach((s, j) => { if (Math.abs(middle(s) - c) < Math.abs(middle(slides[best]) - c)) best = j; });
+    slides.forEach((s, j) => { if (Math.abs(spot(j) - track.scrollLeft) < Math.abs(spot(best) - track.scrollLeft)) best = j; });
     show(best);
+    snap(false); recenter();
+    if (Math.abs(spot(at) - track.scrollLeft) > 2) go(0);
   };
-  for (const e of ["pointerdown", "touchstart", "wheel"]) track.addEventListener(e, () => { aim = -1; }, { passive: true });
-  track.addEventListener("scroll", () => { clearTimeout(timer); timer = setTimeout(settle, 120); }, { passive: true });
-  prev.addEventListener("click", () => go(at - 1));
-  next.addEventListener("click", () => go(at + 1));
-  track.addEventListener("click", e => { const s = e.target.closest(".photo"); if (s && !e.target.closest("a") && !s.classList.contains("is-on")) go(slides.indexOf(s)); });
+  const later = () => { if (!frame) { clearTimeout(timer); timer = setTimeout(settle, 160); } };
+  track.addEventListener("wheel", e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { stop(); snap(true); } }, { passive: true });
+  track.addEventListener("touchstart", () => { stop(); snap(true); touching = true; }, { passive: true });
+  for (const e of ["touchend", "touchcancel"]) track.addEventListener(e, () => { touching = false; later(); }, { passive: true });
+  track.addEventListener("scroll", later, { passive: true });
+  prev.addEventListener("click", () => go(-1));
+  next.addEventListener("click", () => go(1));
+  track.addEventListener("click", e => { const s = e.target.closest(".photo"); if (s && !e.target.closest("a") && !s.classList.contains("is-on")) go(slides.indexOf(s) - at); });
   track.addEventListener("keydown", e => {
     if (e.target !== track) return;
-    const to = { ArrowLeft: at - 1, ArrowRight: at + 1, Home: 0, End: slides.length - 1 }[e.key];
-    if (to !== undefined) { e.preventDefault(); go(to); }
+    const step = { ArrowLeft: -1, ArrowRight: 1, Home: -(at % n), End: n - 1 - at % n }[e.key];
+    if (step !== undefined) { e.preventDefault(); if (step) go(step); }
   });
-  addEventListener("resize", () => { const i = at; at = -1; track.scrollLeft = middle(slides[i]) - track.clientWidth / 2; show(i); });
-  show(0);
+  addEventListener("resize", () => { stop(); snap(false); track.scrollLeft = spot(at); });
+  // Fetch the rest as soon as someone starts browsing, so no card is blank when the row wraps around.
+  const fetchAll = () => track.querySelectorAll("img").forEach(img => { img.loading = "eager"; });
+  for (const el of [track, prev, next]) for (const e of ["pointerdown", "keydown"]) el.addEventListener(e, fetchAll, { once: true, passive: true });
+  snap(false);
+  show(n);
+  track.scrollLeft = spot(n);
 }

@@ -62,15 +62,22 @@ function renderSize(d) {
 
 // ── The page ─────────────────────────────────────────────────
 // Finished artwork. A dinosaur that isn't here yet shows its silhouette.
-// w, h: the file's own size. at: left, top, width and height in the design's pixels. print: its own footprint, instead of the design's.
+// w, h: the file's own size. at: left, top, width and height in the design's pixels. print: its own footprint (not shown at the moment).
 const HERO_ART = {
   tyrannosaurus: { src: "images/hero/trex.webp", w: 1448, h: 1086, at: [81, 325, 1448, 1086], globe: "images/hero/globe-trex.webp", crown: true },
   eoraptor: { src: "images/hero/eoraptor.webp", w: 1336, h: 822, at: [125, 473, 1470, 904], print: "images/hero/print-eoraptor.webp" },
-  herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1065, h: 929, at: [110, 309, 1225, 1068], print: "images/hero/print-herrerasaurus.webp" },
+  herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1065, h: 929, at: [128, 344, 1185, 1033], print: "images/hero/print-herrerasaurus.webp" },
   coelophysis: { src: "images/hero/coelophysis.webp", w: 1082, h: 1116, at: [230, 306, 1038, 1071], print: "images/hero/print-coelophysis.webp" }
 };
-// The footprints in the design are a big three-toed meat-eater's, so only dinosaurs like that get them.
-const THREE_TOED = ["tyrannosaurus", "allosaurus", "dilophosaurus"];
+// Plants of the dinosaur's time: one hangs in from the top right, one grows at the bottom left.
+// Checked against what's been found in (or close to) the rocks each dinosaur comes from, so some have their own pair.
+// Velociraptor gets just one: its dunes were sparsely planted, and the best plant fossils are roots, probably a conifer's.
+const PLANTS = { triassic: ["cycad", "horsetail"], jurassic: ["ginkgo", "fern"], cretaceous: ["palm", "flower"] };
+const OWN_PLANTS = {
+  eoraptor: ["seedfern", "horsetail"], herrerasaurus: ["seedfern", "horsetail"],
+  dilophosaurus: ["cycad", "fern"], archaeopteryx: ["conifer", "cycad"],
+  iguanodon: ["conifer", "fern"], spinosaurus: ["ginkgo", "fern"], argentinosaurus: ["conifer", "flower"], velociraptor: ["conifer"]
+};
 const shortLength = m => m < 1 ? `${Math.round(m * 39.37)} in` : `${Math.round(m * 3.281)} ft`;
 
 function renderPage(d) {
@@ -89,15 +96,14 @@ function renderPage(d) {
 
   page.innerHTML = `
     <section class="club-hero" style="--tint:${p.color}">
+      <p class="club-time"><i></i><b>${p.name}</b> ~ ${d.start} to ${d.end} million years ago</p>
       <h1 class="club-name" style="--len:${Math.max(...d.name.split(" ").map(w => w.length))}">${d.name}</h1>
-      <div class="club-say"><span>${d.say}</span><button type="button" id="say-name" aria-label="Hear how to say ${d.name}" hidden><img src="images/hero/audio.svg" width="32" height="32" alt=""></button></div>
-      <div class="club-meaning"><p>It means “${d.meaning}”.</p><p>${p.name}, about ${d.start} to ${d.end} million years ago</p></div>
+      <div class="club-say"><button type="button" id="say-name" aria-label="Hear how to say ${d.name}" hidden><img src="images/hero/audio.svg" width="32" height="32" alt=""></button><span>${d.say}</span></div>
+      <p class="club-meaning">It means “${d.meaning}”.</p>
       <div class="club-art" aria-hidden="true">
         <div class="club-circle"></div>
-        ${art && art.print
-          ? [1, 2].map(n => `<div class="club-print club-print-${n}" style="-webkit-mask-image:url(${art.print});mask-image:url(${art.print})"></div>`).join("")
-          : THREE_TOED.includes(d.id) ? `<div class="club-prints"></div>` : ""}
         <div class="club-word"><div style="--loop:${d.name.length * 3.4}s"><span>${d.name}</span><span>${d.name}</span></div></div>
+        ${(OWN_PLANTS[d.id] || PLANTS[p.id]).map((x, n) => `<div class="club-plant club-plant-${n + 1} is-${x}"></div>`).join("")}
         ${art
           ? `<img class="club-photo" src="${art.src}" width="${art.w}" height="${art.h}" style="${["--x", "--y", "--w", "--h"].map((k, n) => `${k}:${art.at[n]}`).join(";")}" alt="">${art.crown ? `<div class="club-crown"></div>` : ""}`
           : `<div class="club-shape">${silhouetteSVG(d, "var(--ink)").replace("<svg ", `<svg preserveAspectRatio="xMidYMax meet" `)}</div>`}
@@ -116,7 +122,7 @@ function renderPage(d) {
 
     ${typeof photosHTML === "function" ? photosHTML(d) : ""}
 
-    <section class="funfact panel"><strong>Fun fact:</strong> ${d.fact}</section>
+    <section class="club-fun${d.fact.length > 90 ? " is-long" : d.fact.length > 65 ? " is-medium" : ""}"><h2>Fun fact</h2><p>${d.fact}</p></section>
 
     ${callHTML(d)}
 
