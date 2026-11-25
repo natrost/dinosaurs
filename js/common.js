@@ -200,9 +200,12 @@ const plantsHTML = list => list.map((x, n) => `<div class="club-plant club-plant
 // w, h: the file's own size. at: left, top, width and height in the design's pixels. print: its own footprint (not shown at the moment).
 const HERO_ART = {
   tyrannosaurus: { src: "images/hero/trex.webp", w: 1448, h: 1086, at: [81, 325, 1448, 1086], globe: "images/hero/globe-trex.webp", crown: true },
-  eoraptor: { src: "images/hero/eoraptor.webp", w: 1336, h: 822, at: [125, 473, 1470, 904], print: "images/hero/print-eoraptor.webp" },
-  herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1065, h: 929, at: [128, 344, 1185, 1033], print: "images/hero/print-herrerasaurus.webp" },
-  coelophysis: { src: "images/hero/coelophysis.webp", w: 1082, h: 1116, at: [230, 306, 1038, 1071], print: "images/hero/print-coelophysis.webp" }
+  eoraptor: { src: "images/hero/eoraptor.webp", w: 1079, h: 861, at: [110, 388, 1246, 994], print: "images/hero/print-eoraptor.webp" },
+  herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1003, h: 991, at: [180, 342, 1050, 1037], print: "images/hero/print-herrerasaurus.webp" },
+  coelophysis: { src: "images/hero/coelophysis.webp", w: 1082, h: 1116, at: [230, 306, 1038, 1071], print: "images/hero/print-coelophysis.webp" },
+  dilophosaurus: { src: "images/hero/dilophosaurus.webp", w: 1076, h: 1229, at: [340, 330, 918, 1049] },
+  stegosaurus: { src: "images/hero/stegosaurus.webp", w: 1043, h: 1085, at: [250, 382, 958, 997] },
+  allosaurus: { src: "images/hero/allosaurus.webp", w: 1062, h: 1108, at: [230, 326, 1008, 1052] }
 };
 // Each period has a pair of plants (PLANTS, in common.js).
 // Checked against what's been found in (or close to) the rocks each dinosaur comes from, so some have their own pair.

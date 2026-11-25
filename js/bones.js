@@ -1,7 +1,7 @@
 // The dig: brush the dirt off a buried skeleton. Skeletons are images/bones/<id>.webp, all facing left.
 {
 const $ = id => document.getElementById(id);
-const DIGS = ["coelophysis", "eoraptor", "herrerasaurus", "dilophosaurus"];
+const DIGS = ["coelophysis", "eoraptor", "herrerasaurus", "dilophosaurus", "stegosaurus", "allosaurus"];
 const DONE = .86; // how much of the skeleton has to show
 const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const site = $("dig-site"), bones = $("dig-bones"), dirt = $("dig-dirt"), dust = $("dig-dust");

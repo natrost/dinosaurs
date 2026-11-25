@@ -7,7 +7,10 @@ const BUS_M = { length: 12, height: 3.2 };
 const SIZE_ART = {
   eoraptor: { src: "images/side/eoraptor.webp", w: 1200, h: 481, span: .96 },
   herrerasaurus: { src: "images/side/herrerasaurus.webp", w: 1200, h: 457, span: .96 },
-  coelophysis: { src: "images/side/coelophysis.webp", w: 1200, h: 389, span: .96 }
+  coelophysis: { src: "images/side/coelophysis.webp", w: 1200, h: 389, span: .96 },
+  dilophosaurus: { src: "images/side/dilophosaurus.webp", w: 1200, h: 516, span: .96 },
+  stegosaurus: { src: "images/side/stegosaurus.webp", w: 1200, h: 580, span: .96 },
+  allosaurus: { src: "images/side/allosaurus.webp", w: 1200, h: 524, span: .96 }
 };
 function sizeArt(d, color) {
   const art = SIZE_ART[d.id];

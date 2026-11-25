@@ -142,7 +142,7 @@
 .dig-meter { height: 26px; border: 2px solid var(--ink); border-radius: 99px; background: #fff; overflow: hidden; }
 .dig-meter i { display: block; width: 0; height: 100%; background: var(--clay); transition: width .25s; }
 .dig-status { margin: 0; min-width: 9ch; text-align: right; }
-.dig-case { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 44%), 1fr)); gap: clamp(10px, 1.2vw, 20px); list-style: none; margin: clamp(24px, 3vw, 48px) 0 24px; padding: 0; }
+.dig-case { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 44%), 1fr)); gap: clamp(10px, 1.2vw, 20px); list-style: none; margin: clamp(24px, 3vw, 48px) 0 24px; padding: 0; }
 .dig-case li { display: grid; gap: 8px; padding: 14px; border-radius: 8px; text-align: center; background: rgba(255, 255, 255, .28); font: 700 clamp(14px, 1.1vw, 18px)/1.2 var(--label); }
 .dig-case img { width: 100%; height: auto; aspect-ratio: 5 / 2; object-fit: contain; }
 .dig-case li:not(.is-got) img { filter: brightness(0); opacity: .16; }

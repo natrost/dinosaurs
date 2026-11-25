@@ -39,6 +39,9 @@ const PHOTOS = {
     {"file": "plateosaurus-5.jpg", "w": 1280, "h": 675, "kind": "Skeleton", "alt": "A skeleton set into a wall.", "by": "Ghedoghedo", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:Plateosaurus_engelhardti.JPG"}
   ],
   dilophosaurus: [
+    {"file": "dilophosaurus-art-1.jpg", "w": 1400, "h": 788, "kind": "Artwork", "alt": "How it might have looked at home, among conifers, cycads and ferns. The colors are a guess.", "by": "Made for this site"},
+    {"file": "dilophosaurus-art-2.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Up close.", "by": "Made for this site"},
+    {"file": "dilophosaurus-art-3.jpg", "w": 822, "h": 760, "kind": "Artwork", "alt": "Face to face.", "by": "Made for this site"},
     {"file": "dilophosaurus-1.jpg", "w": 1280, "h": 460, "kind": "Artwork", "alt": "How one artist pictures it, with a pair of crests.", "by": "Connor Ashbridge", "lic": "CC BY 4.0", "licurl": "https://creativecommons.org/licenses/by/4.0", "page": "https://commons.wikimedia.org/wiki/File:Life_reconstruction_of_Dilophosaurus_wetherilli.png", "cut": true},
     {"file": "dilophosaurus-2.jpg", "w": 1280, "h": 960, "kind": "Fossil", "alt": "A skeleton laid out as it might be found, at the Royal Ontario Museum.", "by": "Eduard Solà", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:DilophosaurusROM2.JPG"},
     {"file": "dilophosaurus-3.jpg", "w": 1144, "h": 960, "kind": "Skull", "alt": "A skull with its crest, at the American Museum of Natural History.", "by": "Eden, Janine and Jim", "lic": "CC BY 2.0", "licurl": "https://creativecommons.org/licenses/by/2.0", "page": "https://commons.wikimedia.org/wiki/File:Dilophosaurus_skull_AMNH.jpg"},
@@ -46,6 +49,8 @@ const PHOTOS = {
     {"file": "dilophosaurus-5.jpg", "w": 1280, "h": 915, "kind": "Artwork", "alt": "Resting like a bird. Real tracks show a dinosaur sitting this way.", "by": "Heather Kyoht Luterman", "lic": "CC BY 2.5", "licurl": "https://creativecommons.org/licenses/by/2.5", "page": "https://commons.wikimedia.org/wiki/File:Dilophosaurus_in_bird-like_resting_pose.jpg"}
   ],
   stegosaurus: [
+    {"file": "stegosaurus-art-1.jpg", "w": 1400, "h": 788, "kind": "Artwork", "alt": "How it might have looked at home, among conifers, cycads and ferns. The colors are a guess.", "by": "Made for this site"},
+    {"file": "stegosaurus-art-2.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Up close.", "by": "Made for this site"},
     {"file": "stegosaurus-1.jpg", "w": 1280, "h": 618, "kind": "Artwork", "alt": "A painting based on “Sophie”, one of the most complete Stegosaurus skeletons.", "by": "Fred Wierum", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:Stegosaurus_stenops_Life_Reconstruction.png", "cut": true},
     {"file": "stegosaurus-2.jpg", "w": 1280, "h": 902, "kind": "Skeleton", "alt": "A skeleton at the Carnegie Museum in Pittsburgh.", "by": "Perry Quan", "lic": "CC BY-SA 2.0", "licurl": "https://creativecommons.org/licenses/by-sa/2.0", "page": "https://commons.wikimedia.org/wiki/File:Stegosaurus_ungulatus.jpg"},
     {"file": "stegosaurus-3.jpg", "w": 1280, "h": 770, "kind": "Skeleton", "alt": "“Sophie” at the Natural History Museum, London.", "by": "Susannah Maidment and others, Natural History Museum, London", "lic": "CC BY 4.0", "licurl": "https://creativecommons.org/licenses/by/4.0", "page": "https://commons.wikimedia.org/wiki/File:Journal.pone.0138352.g001A.jpg", "cut": true},
@@ -53,6 +58,10 @@ const PHOTOS = {
     {"file": "stegosaurus-5.jpg", "w": 1124, "h": 960, "kind": "Skeleton", "alt": "A copy of a skeleton, rearing up, in Houston.", "by": "Evolutionnumber9", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:HMNS_Stegosaurus.jpg"}
   ],
   allosaurus: [
+    {"file": "allosaurus-art-1.jpg", "w": 1400, "h": 788, "kind": "Artwork", "alt": "How it might have looked at home, among conifers and ferns. The colors are a guess.", "by": "Made for this site"},
+    {"file": "allosaurus-art-2.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Up close.", "by": "Made for this site"},
+    {"file": "allosaurus-art-3.jpg", "w": 822, "h": 700, "kind": "Artwork", "alt": "Face to face.", "by": "Made for this site"},
+    {"file": "allosaurus-art-4.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Looking back.", "by": "Made for this site"},
     {"file": "allosaurus-1.jpg", "w": 1280, "h": 586, "kind": "Artwork", "alt": "How one artist pictures it.", "by": "Fred Wierum", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:Allosaurus_Revised.jpg", "cut": true},
     {"file": "allosaurus-2.jpg", "w": 1188, "h": 960, "kind": "Skeleton", "alt": "“Big Al II”, one of the best Allosaurus skeletons.", "by": "The_Wookies", "lic": "CC BY 2.5", "licurl": "https://creativecommons.org/licenses/by/2.5", "page": "https://commons.wikimedia.org/wiki/File:WLA_hmns_Allosaurus_White_Background.jpg", "cut": true},
     {"file": "allosaurus-3.jpg", "w": 1280, "h": 679, "kind": "Skeleton", "alt": "Leaning over a meal of bones at the American Museum of Natural History.", "by": "ScottRobertAnselmo", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:AMNH_Allosaurus.jpg"},
