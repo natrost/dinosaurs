@@ -114,7 +114,9 @@ function dinoCard(d, extra = "") {
   const p = periodOf(d);
   return `
     <a class="card" href="dino.html?id=${d.id}">
-      <div class="art" style="--tint:${p.color}">${silhouetteSVG(d, "var(--ink)")}</div>
+      <div class="card-pic" style="--tint:${p.color}">${HERO_ART[d.id]
+        ? `<img src="images/cards/${d.id}.webp" alt="" loading="lazy">`
+        : silhouetteSVG(d, "var(--ink)").replace("<svg ", `<svg preserveAspectRatio="xMidYMax meet" `)}</div>
       <div class="card-body">
         <h3>${d.name}</h3>
         <div class="chips">${periodChip(p)}${dietChip(d)}</div>
