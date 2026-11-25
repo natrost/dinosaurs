@@ -61,22 +61,6 @@ function renderSize(d) {
 }
 
 // ── The page ─────────────────────────────────────────────────
-// Finished artwork. A dinosaur that isn't here yet shows its silhouette.
-// w, h: the file's own size. at: left, top, width and height in the design's pixels. print: its own footprint (not shown at the moment).
-const HERO_ART = {
-  tyrannosaurus: { src: "images/hero/trex.webp", w: 1448, h: 1086, at: [81, 325, 1448, 1086], globe: "images/hero/globe-trex.webp", crown: true },
-  eoraptor: { src: "images/hero/eoraptor.webp", w: 1336, h: 822, at: [125, 473, 1470, 904], print: "images/hero/print-eoraptor.webp" },
-  herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1065, h: 929, at: [128, 344, 1185, 1033], print: "images/hero/print-herrerasaurus.webp" },
-  coelophysis: { src: "images/hero/coelophysis.webp", w: 1082, h: 1116, at: [230, 306, 1038, 1071], print: "images/hero/print-coelophysis.webp" }
-};
-// Each period has a pair of plants (PLANTS, in common.js).
-// Checked against what's been found in (or close to) the rocks each dinosaur comes from, so some have their own pair.
-// Velociraptor gets just one: its dunes were sparsely planted, and the best plant fossils are roots, probably a conifer's.
-const OWN_PLANTS = {
-  eoraptor: ["seedfern", "horsetail"], herrerasaurus: ["seedfern", "horsetail"],
-  dilophosaurus: ["cycad", "fern"], archaeopteryx: ["conifer", "cycad"],
-  iguanodon: ["conifer", "fern"], spinosaurus: ["ginkgo", "fern"], argentinosaurus: ["conifer", "flower"], velociraptor: ["conifer"]
-};
 const shortLength = m => m < 1 ? `${Math.round(m * 39.37)} in` : `${Math.round(m * 3.281)} ft`;
 
 // Scrolls down to a section slowly enough to see the page go by. Scrolling, tapping or pressing a key takes over.
@@ -123,13 +107,7 @@ function renderPage(d) {
       <h1 class="club-name" style="--len:${Math.max(...d.name.split(" ").map(w => w.length))}">${d.name}</h1>
       <div class="club-say"><button type="button" id="say-name" aria-label="Hear how to say ${d.name}" hidden><img src="images/hero/audio.svg" width="32" height="32" alt=""></button><span>${d.say}</span></div>
       <p class="club-meaning">It means “${d.meaning}”.</p>
-      <div class="club-art" aria-hidden="true">
-        <div class="club-circle"></div>
-        <div class="club-word"><div style="--loop:${d.name.length * 3.4}s"><span>${d.name}</span><span>${d.name}</span></div></div>
-        ${plantsHTML(OWN_PLANTS[d.id] || PLANTS[p.id])}
-        ${art
-          ? `<img class="club-photo" src="${art.src}" width="${art.w}" height="${art.h}" style="${["--x", "--y", "--w", "--h"].map((k, n) => `${k}:${art.at[n]}`).join(";")}" alt="">${art.crown ? `<div class="club-crown"></div>` : ""}`
-          : `<div class="club-shape">${silhouetteSVG(d, "var(--ink)").replace("<svg ", `<svg preserveAspectRatio="xMidYMax meet" `)}</div>`}
+      <div class="club-art" aria-hidden="true">${heroArtHTML(d)}
       </div>
     </section>
 

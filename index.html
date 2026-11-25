@@ -4,31 +4,90 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Dino Field Club</title>
-  <meta name="description" content="Dig down through 252 million years and meet the dinosaurs.">
+  <meta name="description" content="Meet 19 dinosaurs and walk through 186 million years of their world.">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="https://use.typekit.net/xng4qie.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/home.css">
 </head>
 <body class="club home">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="6"/></filter><pattern id="chalkfill" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="scale(.34) rotate(-50)"><path d="M0,1.4H5" stroke="#ebebe1" stroke-width="1.5" opacity=".75"/></pattern></defs></svg>
-<div class="layer surface" id="top"><svg class="rays" viewBox="-100 -100 200 200" aria-hidden="true" id="rays"></svg><div class="sun"></div>
-<header class="club-header"><b class="club-logo"><img src="images/logo.svg" width="155" height="85" alt="The Dino Field Club"></b><nav class="club-nav"><a href="index.html">Home</a><a href="timemachine.html">Time machine</a><a href="globe.html">Globe</a><a href="compare.html">Compare dinos</a></nav></header>
-<p class="pen start">you are here.<br>start digging</p><svg class="startarrow" viewBox="0 0 60 90" aria-hidden="true"><path d="M44,4C12,18 10,50 26,82M26,82L10,66M26,82L34,60"/></svg><svg class="you" viewBox="0 0 .3 1"><g fill="#000"><circle cx=".15" cy=".09" r=".085"/><path d="M0.06,0.2 L0.24,0.2 Q0.27,0.2 0.27,0.24 L0.27,0.52 L0.23,0.52 L0.22,1 L0.16,1 L0.15,0.6 L0.14,1 L0.08,1 L0.07,0.52 L0.03,0.52 L0.03,0.24 Q0.03,0.2 0.06,0.2 Z"/></g></svg>
-<h1 class="title"><small>The Dino</small><span>Field Club</span></h1></div>
-<section class="layer since" data-ma="0"><p>The first 66 million years down: <i>whales, horses, mammoths, you.</i> Not a single T. rex. Keep going.</p></section>
-<div class="impact" data-ma="66" aria-label="The asteroid, 66 million years ago"><div id="marq"></div></div>
-<main id="beds"></main>
-<section class="layer bedrock" data-ma="252"><div class="jumble"><h2>Uh-oh. Somebody mixed up the bones.</h2><p class="crate">252 million years down, and the last crate is a mess. Swap the tail, the body and the head until you build something that really lived.</p></div>
-<div class="first" id="first"><div class="stage" id="stage"><button class="col" data-k="0"><span></span></button><button class="col" data-k="1"><span></span></button><button class="col" data-k="2"><span></span></button><svg id="beast" aria-hidden="true"></svg></div><div class="namebar"><p class="mixname" id="mixname"></p><p class="verdict" id="verdict" aria-live="polite"></p><button class="go" id="go">Shuffle</button></div></div>
-<p class="odds" id="odds"></p><div class="doors"><a href="timemachine.html" style="--b:var(--sky)">Time machine<span>Slide to any moment and see who was alive.</span></a><a href="globe.html" style="--b:var(--clay)">Globe<span>Watch the continents drift, and see who lived near you.</span></a><a href="compare.html" style="--b:var(--pink)">Compare<span>Put any two side by side.</span></a><a href="timemachine.html#all" style="--b:var(--amber)">All 19 dinosaurs<span>The whole collection, A to Z.</span></a></div><a class="up" href="#top">Back to the surface</a> <a class="up" style="margin-left:24px" href="credits.html">Credits</a></section>
-<div class="gauge" aria-hidden="true"><b id="ma">0</b><span id="unit">million years down</span></div>
-<script src="js/data.js"></script>
-<script src="js/silhouettes.js"></script>
-<script src="js/common.js"></script>
-<script src="js/paths.js"></script>
-<script src="js/dig.js"></script>
-<script src="js/color-in.js"></script>
-<script src="js/mix.js"></script>
+  <header class="club-header">
+    <b class="club-logo"><img src="images/logo.svg" width="155" height="85" alt="The Dino Field Club"></b>
+    <nav class="club-nav"><a href="index.html">Home</a><a href="timemachine.html">Time machine</a><a href="globe.html">Globe</a><a href="compare.html">Compare dinos</a></nav>
+  </header>
+
+  <main>
+    <h1 class="unseen">The Dino Field Club</h1>
+
+    <!-- One dinosaur at a time, with a to-scale timeline to choose from -->
+    <div class="cover">
+    <section class="club-hero star" id="star" aria-label="Meet a dinosaur">
+      <p class="club-time"><i></i><b id="star-period"></b><span id="star-when"></span></p>
+      <h2 class="club-name" id="star-name"></h2>
+      <p class="club-say" id="star-say"></p>
+      <div class="club-meaning"><p id="star-meaning"></p><a class="button" id="star-go"></a></div>
+      <div class="club-art" id="star-art" aria-hidden="true"></div>
+    </section>
+    <section class="dial white-bar" id="dial" aria-label="Choose a dinosaur">
+      <button type="button" class="round" id="star-prev" aria-label="Older dinosaur"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M37 21 26 32 37 43"/></svg></button>
+      <div class="dial-track" id="dial-track">
+        <div class="dial-dots" id="dial-dots"></div>
+        <div class="dial-bands" id="dial-bands" aria-hidden="true"></div>
+        <div class="dial-ends" aria-hidden="true"><span>252 million years ago</span><span>66 million</span></div>
+      </div>
+      <button type="button" class="round" id="star-next" aria-label="Newer dinosaur"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M27 21 38 32 27 43"/></svg></button>
+      <p class="unseen" id="star-live" aria-live="polite"></p>
+    </section>
+    </div>
+
+    <section class="walk-intro">
+      <p>Now walk through 186 million years. Just keep scrolling.</p>
+      <p class="small"><a href="#explore">Skip the walk</a></p>
+    </section>
+
+    <!-- The long walk: scrolling down moves it sideways -->
+    <section class="walk" id="walk" aria-label="Timeline of the dinosaurs">
+      <div class="walk-view" id="walk-view">
+        <p class="walk-ma" aria-hidden="true"><b id="walk-ma">252</b><span>million years ago</span></p>
+        <div class="walk-track" id="walk-track"></div>
+        <div class="walk-map" id="walk-map"></div>
+      </div>
+    </section>
+
+    <section class="explore" id="explore">
+      <h2>Keep exploring</h2>
+      <div class="grid doors">
+        <a class="card" href="timemachine.html"><div class="art" style="--tint:var(--moss)"><b>152</b></div><div class="card-body"><h3>Time machine</h3><p>Slide to any moment and see who was alive.</p></div></a>
+        <a class="card" href="globe.html"><div class="art" style="--tint:var(--amber)"><img src="images/hero/globe-trex.webp" width="225" height="221" alt="" loading="lazy"></div><div class="card-body"><h3>Globe</h3><p>Watch the continents drift, and see who lived near you.</p></div></a>
+        <a class="card" href="compare.html"><div class="art" style="--tint:var(--clay)" id="door-compare"></div><div class="card-body"><h3>Compare dinos</h3><p>Put any two side by side.</p></div></a>
+        <a class="card" href="timemachine.html#all"><div class="art" style="--tint:var(--sky)"><b>19</b></div><div class="card-body"><h3>All the dinosaurs</h3><p>The whole collection, A to Z.</p></div></a>
+      </div>
+    </section>
+
+    <section class="color bleed">
+      <div class="color-words"><h2>What color was it?</h2><p>Nobody knows. You pick.</p></div>
+      <div class="rex" id="rex"><div class="fig"><canvas id="cv"></canvas><img src="images/art/trex-pencil.png" alt="Tyrannosaurus rex, a pencil drawing you can color in"></div></div>
+      <div class="crayonbox"><div class="crayons" id="crayons"></div><div class="tools"><button type="button" class="button" id="auto">Color it for me</button><button type="button" class="button" id="wipe">Start over</button><button type="button" class="button" id="put">Put the crayon down</button></div></div>
+    </section>
+
+    <section class="bones bleed">
+      <h2>Uh-oh. Somebody mixed up the bones.</h2>
+      <p class="crate">Swap the tail, the body and the head until you build something that really lived.</p>
+      <div class="first" id="first"><div class="stage" id="stage"><button type="button" class="col" data-k="0"><span></span></button><button type="button" class="col" data-k="1"><span></span></button><button type="button" class="col" data-k="2"><span></span></button><svg id="beast" aria-hidden="true"></svg></div><div class="namebar"><p class="mixname" id="mixname"></p><p class="verdict" id="verdict" aria-live="polite"></p><button type="button" class="go" id="go">Shuffle</button></div></div>
+      <p class="odds" id="odds"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">Dates and sizes are scientists' best estimates and change as new fossils are found. <a href="credits.html">Credits</a></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/silhouettes.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/size.js"></script>
+  <script src="js/paths.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/color-in.js"></script>
+  <script src="js/mix.js"></script>
 </body>
 </html>

@@ -193,3 +193,34 @@ function renderTimeline(el, dinos, opts = {}) {
 // For each period: one hangs in from the top right, one grows at the bottom left.
 const PLANTS = { triassic: ["cycad", "horsetail"], jurassic: ["ginkgo", "fern"], cretaceous: ["palm", "flower"] };
 const plantsHTML = list => list.map((x, n) => `<div class="club-plant club-plant-${n + 1} is-${x}"></div>`).join("");
+
+// ── Dinosaur art ─────────────────────────────────────────────
+// The big picture at the top of a dinosaur page. The homepage uses it too.
+// Finished artwork. A dinosaur that isn't here yet shows its silhouette.
+// w, h: the file's own size. at: left, top, width and height in the design's pixels. print: its own footprint (not shown at the moment).
+const HERO_ART = {
+  tyrannosaurus: { src: "images/hero/trex.webp", w: 1448, h: 1086, at: [81, 325, 1448, 1086], globe: "images/hero/globe-trex.webp", crown: true },
+  eoraptor: { src: "images/hero/eoraptor.webp", w: 1336, h: 822, at: [125, 473, 1470, 904], print: "images/hero/print-eoraptor.webp" },
+  herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1065, h: 929, at: [128, 344, 1185, 1033], print: "images/hero/print-herrerasaurus.webp" },
+  coelophysis: { src: "images/hero/coelophysis.webp", w: 1082, h: 1116, at: [230, 306, 1038, 1071], print: "images/hero/print-coelophysis.webp" }
+};
+// Each period has a pair of plants (PLANTS, in common.js).
+// Checked against what's been found in (or close to) the rocks each dinosaur comes from, so some have their own pair.
+// Velociraptor gets just one: its dunes were sparsely planted, and the best plant fossils are roots, probably a conifer's.
+const OWN_PLANTS = {
+  eoraptor: ["seedfern", "horsetail"], herrerasaurus: ["seedfern", "horsetail"],
+  dilophosaurus: ["cycad", "fern"], archaeopteryx: ["conifer", "cycad"],
+  iguanodon: ["conifer", "fern"], spinosaurus: ["ginkgo", "fern"], argentinosaurus: ["conifer", "flower"], velociraptor: ["conifer"]
+};
+const plantsOf = d => OWN_PLANTS[d.id] || PLANTS[periodOf(d).id];
+
+function heroArtHTML(d) {
+  const art = HERO_ART[d.id];
+  return `
+    <div class="club-circle"></div>
+    <div class="club-word"><div style="--loop:${d.name.length * 3.4}s"><span>${d.name}</span><span>${d.name}</span></div></div>
+    ${plantsHTML(plantsOf(d))}
+    ${art
+      ? `<img class="club-photo" src="${art.src}" width="${art.w}" height="${art.h}" style="${["--x", "--y", "--w", "--h"].map((k, n) => `${k}:${art.at[n]}`).join(";")}" alt="">${art.crown ? `<div class="club-crown"></div>` : ""}`
+      : `<div class="club-shape">${silhouetteSVG(d, "var(--ink)").replace("<svg ", `<svg preserveAspectRatio="xMidYMax meet" `)}</div>`}`;
+}
