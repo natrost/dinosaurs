@@ -14,11 +14,11 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 
 main { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
 .bleed { width: 100vw; margin-left: calc(50% - 50vw); padding-left: max(var(--pad), calc(50vw - var(--maxw) / 2 + var(--pad))); padding-right: max(var(--pad), calc(50vw - var(--maxw) / 2 + var(--pad))); }
-.site-header { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; padding: 20px var(--pad); font-weight: 700; }
-.logo { font-weight: 900; text-decoration: none; }
+.site-header { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; padding: 20px var(--pad); font-weight: 700; }
+.logo img { display: block; width: clamp(104px, 10.8vw, 155px); height: auto; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { text-decoration: none; }
-.site-nav a:hover, .logo:hover { text-decoration: underline; text-underline-offset: 4px; }
+.site-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .site-footer { background: var(--ink); color: var(--ivory); padding: 34px var(--pad) 44px; font-size: 15px; margin-top: clamp(50px, 7vw, 100px); }
 
 .hero { padding: clamp(20px, 4vw, 60px) 0 clamp(16px, 2vw, 30px); }
