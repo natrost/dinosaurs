@@ -49,7 +49,7 @@ function drawPin() {
     if (z > 0 && inView(x, y)) {
       ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - 34); ctx.lineWidth = 3; ctx.strokeStyle = INK; ctx.stroke();
       ctx.beginPath(); ctx.arc(x, y - 38, 10, 0, 7); ctx.fillStyle = css("--pink"); ctx.fill(); ctx.lineWidth = 3; ctx.stroke();
-      ctx.font = `400 34px ${css("--pen")}`; ctx.fillStyle = INK; ctx.textAlign = x > cx ? "right" : "left";
+      ctx.font = `400 22px ${css("--type")}`; ctx.fillStyle = INK; ctx.textAlign = x > cx ? "right" : "left";
       ctx.fillText("you", x + (x > cx ? -16 : 16), y - 34);
     }
   }
@@ -62,6 +62,12 @@ function say() {
   $("stage").style.setProperty("--tint", ma < 66 || !p ? "var(--pink)" : p.color);
   $("ma").textContent = ma < 1 ? "Now" : shownMa;
   $("unit").textContent = ma < 1 ? "Every fossil site, on today's map" : `million years ago${p ? `, ${p.name}` : ""}`;
+  const word = ma < 1 ? "Today" : p ? p.name : ma < 66 ? "After" : "Permian";
+  if ($("period-word").dataset.word !== word) {
+    $("period-word").dataset.word = word;
+    $("period-word").innerHTML = `<span>${word}</span>`.repeat(4);
+    $("period-word").style.setProperty("--loop", `${word.length * 6.8}s`);
+  }
   $("blurb").textContent = ma < 66 ? "The continents have drifted to where you know them." : p ? p.blurb : "Just before the Triassic. No dinosaurs yet.";
   sayList(ma === 0 ? CAST : ma < 66 ? [] : alive);
 }
@@ -197,3 +203,8 @@ idle = !calm;
 say();
 const ask = new URLSearchParams(location.search).get("d");
 if (ask && findDino(ask)) { focus = ask; const o = CAST.find(x => x.d.id === ask); setTime(o.mid); idle = false; const [lat, lng] = latLng(placeNow(o.main.v, o.main.plate)); view = { lng, lat: Math.max(-70, Math.min(70, lat)) }; }
+
+// The big word stands on the time bar.
+const standWord = () => { const w = $("globe-word"); w.style.top = `${$("time-row").offsetTop - parseFloat(getComputedStyle(w).fontSize) * .86}px`; };
+new ResizeObserver(standWord).observe($("stage"));
+standWord();

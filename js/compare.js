@@ -80,6 +80,9 @@ function renderScene() {
     return `<path class="pointer" d="M${cx - t / 2},${top - t} L${cx + t / 2},${top - t} L${cx},${top} Z"><title>${d.name} is here</title></path>`;
   };
 
+  const sides = document.getElementById("versus").style;
+  sides.setProperty("--tint-a", periodOf(a).color);
+  sides.setProperty("--tint-b", periodOf(b).color);
   document.getElementById("size-scene").innerHTML = `
     <svg viewBox="0 0 ${width} ${height * 1.01}" role="img" aria-label="${a.name} and ${b.name} drawn to the same scale, with a grown-up and you in between">
       <g class="dino-a" transform="translate(${xA} ${g - A.h}) scale(${A.w / 100})">${A.art.shape}</g>
@@ -152,9 +155,9 @@ function render() {
 const options = byName.map(d => `<option value="${d.id}">${d.name}</option>`).join("");
 page.className = "compare";
 page.innerHTML = `
-  <section class="hero"><h1>Compare two dinosaurs</h1></section>
+  <section class="page-top"><h1>Compare two dinosaurs</h1><p>Pick any two and see who was bigger, and whether they could have met.</p></section>
 
-  <section class="panel">
+  <section class="white-bar">
     <div class="pickers">
       <div class="picker side-a"><label for="pick-a">First dinosaur</label><select id="pick-a">${options}</select></div>
       <button type="button" class="button" id="swap">⇄ Swap</button>
@@ -166,8 +169,8 @@ page.innerHTML = `
     </div>
   </section>
 
-  <section class="panel">
-    <h2>Side by side</h2>
+  <section class="versus" id="versus">
+    <h2 class="label">Side by side</h2>
     <p id="headline" class="headline" aria-live="polite"></p>
     <div id="size-scene" class="size-scene"></div>
     <div id="size-legend" class="size-legend"></div>

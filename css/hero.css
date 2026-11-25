@@ -1,6 +1,6 @@
 /* The dinosaur page's header, hero and facts, from the Figma design.
    Positions are in the design's own pixels: --u is one of them, on a 1440-wide page, and x is measured from the middle. */
-.club { --ivory: #ebebe1; --u: calc(min(100vw, 1800px) / 1440); --edge: max(calc(var(--u) * 32), calc(50vw - var(--u) * 688)); --black: #000; --display: "bookmania", "Bookman Old Style", Georgia, serif; --label: "gotham", "Archivo", sans-serif; --type: "bulletin-typewriter-mn", "Bulletin Typewriter MN", "American Typewriter", "Courier New", monospace; position: relative; }
+.club { --ivory: #ebebe1; --u: calc(min(100vw, 1800px) / 1440); --edge: max(calc(var(--u) * 32), calc(50vw - var(--u) * 688)); --black: #000; position: relative; }
 /* Paper grain */
 .club::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--ivory) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .2 0 0 0 0 .15 0 0 0 .055 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"); }
 body.club { background: none; }

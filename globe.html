@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Globe · The Dino Field Club</title>
   <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="https://use.typekit.net/xng4qie.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/hero.css">
 </head>
-<body>
-  <header class="site-header">
-    <a class="logo" href="index.html"><img src="images/logo.svg" width="155" height="85" alt="The Dino Field Club"></a>
-    <nav class="site-nav"><a href="timemachine.html">Time machine</a><a href="globe.html">Globe</a><a href="compare.html">Compare</a></nav>
+<body class="club">
+  <header class="club-header">
+    <a class="club-logo" href="index.html"><img src="images/logo.svg" width="155" height="85" alt="The Dino Field Club"></a>
+    <nav class="club-nav"><a href="index.html">Home</a><a href="timemachine.html">Time machine</a><a href="globe.html">Globe</a><a href="compare.html">Compare dinos</a></nav>
   </header>
 
   <main>
-    <section class="hero hero-slim"><h1>Spin the world back</h1><p>The continents drifted while dinosaurs lived on them. Drag the globe, slide through time, and see who was where.</p></section>
+    <section class="page-top"><h1>Spin the world back</h1><p>The continents drifted while dinosaurs lived on them. Drag the globe, slide through time, and see who was where.</p></section>
 
     <section class="stage-globe bleed" id="stage" aria-label="Globe">
+      <div class="club-word globe-word" id="globe-word" aria-hidden="true"><div id="period-word"></div></div>
       <div class="globe-sky" id="sky"><canvas id="globe" tabindex="0" role="img" aria-label="Globe of the ancient Earth. Use the arrow keys to turn it, and plus and minus to zoom. The list beside it names the dinosaurs shown."></canvas><div id="labels"></div><div id="tip" class="globe-tip" hidden></div></div>
       <div class="globe-wrap" id="wrap"><div class="globe-zoom"><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-out" aria-label="Zoom out">−</button></div></div>
       <div class="globe-words" id="words">

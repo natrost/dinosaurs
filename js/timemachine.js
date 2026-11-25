@@ -5,6 +5,8 @@ renderTimeline(timelineEl, DINOS);
 document.getElementById("all").innerHTML =
   DINOS.slice().sort((a, b) => a.name.localeCompare(b.name)).map(d => dinoCard(d)).join("");
 
+let shown = "";
+
 function distanceInTime(d, ma) {
   if (ma > d.start) return ma - d.start;
   if (ma < d.end) return d.end - ma;
@@ -16,8 +18,18 @@ function update() {
   document.getElementById("ma").textContent = ma;
 
   const p = periodAt(ma);
-  document.querySelector(".machine").style.setProperty("--tint", p ? p.color : "var(--sand)");
-  document.getElementById("period-chip").innerHTML = p ? periodChip(p) : `<span class="chip chip-plain">Before the dinosaurs</span>`;
+  document.querySelectorAll(".machine").forEach(el => el.style.setProperty("--tint", p ? p.color : "var(--sand)"));
+  const name = p ? p.name : "Permian";
+  if (name !== shown) {
+    shown = name;
+    document.getElementById("period-chip").textContent = p ? name : "Before the dinosaurs";
+    const word = document.getElementById("period-word");
+    word.innerHTML = `<span>${name}</span>`.repeat(4);
+    word.style.setProperty("--loop", `${name.length * 6.8}s`);
+    const art = document.querySelector(".tm-hero .club-art");
+    art.querySelectorAll(".club-plant").forEach(x => x.remove());
+    if (p) art.insertAdjacentHTML("beforeend", plantsHTML(PLANTS[p.id]));
+  }
   document.getElementById("period-blurb").textContent = p ? p.blurb : "This is the very end of the Permian, just before the Triassic began. There were no dinosaurs yet.";
 
   const alive = DINOS.filter(d => d.start >= ma && ma >= d.end);

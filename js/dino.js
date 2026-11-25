@@ -69,10 +69,9 @@ const HERO_ART = {
   herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1065, h: 929, at: [128, 344, 1185, 1033], print: "images/hero/print-herrerasaurus.webp" },
   coelophysis: { src: "images/hero/coelophysis.webp", w: 1082, h: 1116, at: [230, 306, 1038, 1071], print: "images/hero/print-coelophysis.webp" }
 };
-// Plants of the dinosaur's time: one hangs in from the top right, one grows at the bottom left.
+// Each period has a pair of plants (PLANTS, in common.js).
 // Checked against what's been found in (or close to) the rocks each dinosaur comes from, so some have their own pair.
 // Velociraptor gets just one: its dunes were sparsely planted, and the best plant fossils are roots, probably a conifer's.
-const PLANTS = { triassic: ["cycad", "horsetail"], jurassic: ["ginkgo", "fern"], cretaceous: ["palm", "flower"] };
 const OWN_PLANTS = {
   eoraptor: ["seedfern", "horsetail"], herrerasaurus: ["seedfern", "horsetail"],
   dilophosaurus: ["cycad", "fern"], archaeopteryx: ["conifer", "cycad"],
@@ -127,7 +126,7 @@ function renderPage(d) {
       <div class="club-art" aria-hidden="true">
         <div class="club-circle"></div>
         <div class="club-word"><div style="--loop:${d.name.length * 3.4}s"><span>${d.name}</span><span>${d.name}</span></div></div>
-        ${(OWN_PLANTS[d.id] || PLANTS[p.id]).map((x, n) => `<div class="club-plant club-plant-${n + 1} is-${x}"></div>`).join("")}
+        ${plantsHTML(OWN_PLANTS[d.id] || PLANTS[p.id])}
         ${art
           ? `<img class="club-photo" src="${art.src}" width="${art.w}" height="${art.h}" style="${["--x", "--y", "--w", "--h"].map((k, n) => `${k}:${art.at[n]}`).join(";")}" alt="">${art.crown ? `<div class="club-crown"></div>` : ""}`
           : `<div class="club-shape">${silhouetteSVG(d, "var(--ink)").replace("<svg ", `<svg preserveAspectRatio="xMidYMax meet" `)}</div>`}

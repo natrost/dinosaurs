@@ -17,7 +17,7 @@ function draw(changed=[0,1,2]){
  const x0=tail.x,x1=head.x+100*kh,ys=[tail.y+S[T].t[0][0]*kt,s.t[1][0],head.y+S[H].t[2][0]*kh],yb=[tail.y+S[T].t[0][1]*kt,s.t[1][1],head.y+S[H].t[2][1]*kh];
  const top=Math.min(...ys),bot=Math.max(...yb),st=$("stage"),W=st.clientWidth,HH=st.clientHeight,padT=HH*.08,padB=70;
  const k=Math.min(W*.93/(x1-x0),(HH-padT-padB)/(bot-top)),ox=(W-(x1-x0)*k)/2-x0*k,oy=HH-padB-bot*k;
- const part=(id,m,a,b,n)=>`<clipPath id="c${n}"><rect x="${a-(n===0?20:.06)}" y="-90" width="${b-a+(n===1?.12:20)}" height="300"/></clipPath><g class="${changed.includes(n)?"part":""}"><g transform="translate(${ox+m.x*k} ${oy+m.y*k}) scale(${m.k*k})"><path clip-path="url(#c${n})" d="${PATHS[id]}" fill="#1f322c"/></g></g>`;
+ const part=(id,m,a,b,n)=>`<clipPath id="c${n}"><rect x="${a-(n===0?20:.06)}" y="-90" width="${b-a+(n===1?.12:20)}" height="300"/></clipPath><g class="${changed.includes(n)?"part":""}"><g transform="translate(${ox+m.x*k} ${oy+m.y*k}) scale(${m.k*k})"><path clip-path="url(#c${n})" d="${PATHS[id]}" fill="#000"/></g></g>`;
  $("beast").innerHTML=part(T,tail,-20,S[T].a+.06,0).replace('width="40.12"','')+part(B,{x:0,y:0,k:1},s.a,s.b,1)+part(H,head,S[H].b,100,2);
  const e1=ox+s.a*k,e2=ox+s.b*k,w=[e1,e2-e1,W-e2];
  document.querySelectorAll(".col").forEach((c,i)=>{const d=findDino(pick[i]);c.style.width=w[i]+"px";c.style.setProperty("--c2",`var(${PC[periodOf(d).id]})`);c.firstElementChild.textContent=["Next tail","Next body","Next head"][i];c.setAttribute("aria-label",`${["Tail","Body","Head"][i]}: ${d.name}. Change it.`)});

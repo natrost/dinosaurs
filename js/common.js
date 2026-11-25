@@ -188,3 +188,8 @@ function renderTimeline(el, dinos, opts = {}) {
 
   el.innerHTML = head + rows + axis;
 }
+
+// ── Plants ───────────────────────────────────────────────────
+// For each period: one hangs in from the top right, one grows at the bottom left.
+const PLANTS = { triassic: ["cycad", "horsetail"], jurassic: ["ginkgo", "fern"], cretaceous: ["palm", "flower"] };
+const plantsHTML = list => list.map((x, n) => `<div class="club-plant club-plant-${n + 1} is-${x}"></div>`).join("");
