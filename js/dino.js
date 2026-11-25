@@ -80,6 +80,30 @@ const OWN_PLANTS = {
 };
 const shortLength = m => m < 1 ? `${Math.round(m * 39.37)} in` : `${Math.round(m * 3.281)} ft`;
 
+// Scrolls down to a section slowly enough to see the page go by. Scrolling, tapping or pressing a key takes over.
+function glideTo(e) {
+  const to = document.querySelector(e.currentTarget.hash);
+  if (!to || e.metaKey || e.ctrlKey || e.shiftKey || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  e.preventDefault();
+  if (location.hash !== e.currentTarget.hash) history.pushState(null, "", e.currentTarget.hash);
+  const from = scrollY, t0 = performance.now(), time = Math.max(1000, Math.min(2200, Math.abs(to.getBoundingClientRect().top) * .65));
+  const takeOver = ["wheel", "touchstart", "pointerdown", "keydown"];
+  let going = true;
+  const done = () => { going = false; takeOver.forEach(x => removeEventListener(x, done)); };
+  takeOver.forEach(x => addEventListener(x, done, { passive: true }));
+  const tick = now => {
+    if (!going) return;
+    const t = Math.max(0, Math.min(1, (now - t0) / time)), ease = (1 - Math.cos(Math.PI * t)) / 2;
+    const end = Math.min(to.getBoundingClientRect().top + scrollY, document.documentElement.scrollHeight - innerHeight);
+    scrollTo({ top: from + (end - from) * ease, behavior: "instant" });
+    if (t < 1) return requestAnimationFrame(tick);
+    done();
+    const h = to.querySelector("h2");
+    if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
+  };
+  requestAnimationFrame(tick);
+}
+
 function renderPage(d) {
   document.title = `${d.name} · The Dino Field Club`;
   const p = periodOf(d);
@@ -115,9 +139,9 @@ function renderPage(d) {
         <div class="club-fact"><h2>Length</h2><p>${shortLength(d.lengthM)}</p></div>
         <div class="club-fact"><h2>Weight</h2><p>${Math.round(d.weightKg * 2.205).toLocaleString()} lb</p></div>
         <div class="club-fact"><h2>Food</h2><p>${diet.label}</p>${d.dietNote ? `<p class="note">${d.dietNote}</p>` : ""}</div>
-        <div class="club-fact"><h2>Fossils found in</h2><p>${d.found}</p></div>
+        <a class="club-fact" href="#stage"><h2>Fossils found in</h2><p>${d.found}</p></a>
       </div>
-      <a class="club-globe" id="fact-globe" href="#stage" aria-label="See where ${d.name} fossils were found">${art && art.globe ? `<img src="${art.globe}" width="225" height="221" alt="">` : ""}</a>
+      <a class="club-globe" id="fact-globe" href="#stage" tabindex="-1" aria-hidden="true">${art && art.globe ? `<img src="${art.globe}" width="225" height="221" alt="">` : ""}</a>
     </section>
 
     ${typeof photosHTML === "function" ? photosHTML(d) : ""}
@@ -185,6 +209,8 @@ function renderPage(d) {
   startSounds(d);
   fitGiant();
   document.fonts.ready.then(fitGiant);
+
+  document.querySelectorAll('.club-facts a[href="#stage"]').forEach(a => a.addEventListener("click", glideTo));
 
   startHeightForm(() => renderSize(d));
   if (typeof startPhotos === "function") startPhotos();
