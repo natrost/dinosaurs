@@ -66,10 +66,11 @@ function renderSize(d) {
 const HERO_ART = {
   tyrannosaurus: { src: "images/hero/trex.webp", w: 1448, h: 1086, at: [81, 325, 1448, 1086], globe: "images/hero/globe-trex.webp", crown: true },
   eoraptor: { src: "images/hero/eoraptor.webp", w: 1336, h: 822, at: [125, 473, 1470, 904], print: "images/hero/print-eoraptor.webp" },
-  herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1065, h: 929, at: [110, 309, 1225, 1068], print: "images/hero/print-herrerasaurus.webp" }
+  herrerasaurus: { src: "images/hero/herrerasaurus.webp", w: 1065, h: 929, at: [110, 309, 1225, 1068], print: "images/hero/print-herrerasaurus.webp" },
+  coelophysis: { src: "images/hero/coelophysis.webp", w: 1082, h: 1116, at: [230, 306, 1038, 1071], print: "images/hero/print-coelophysis.webp" }
 };
 // The footprints in the design are a big three-toed meat-eater's, so only dinosaurs like that get them.
-const THREE_TOED = ["tyrannosaurus", "allosaurus", "dilophosaurus", "coelophysis"];
+const THREE_TOED = ["tyrannosaurus", "allosaurus", "dilophosaurus"];
 const shortLength = m => m < 1 ? `${Math.round(m * 39.37)} in` : `${Math.round(m * 3.281)} ft`;
 
 function renderPage(d) {

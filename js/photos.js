@@ -21,6 +21,10 @@ const PHOTOS = {
     {"file": "herrerasaurus-3.jpg", "w": 1280, "h": 662, "kind": "Skull", "alt": "A skull full of curved, blade-like teeth.", "by": "Ghedoghedo", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:Herrerasaurus1.JPG"}
   ],
   coelophysis: [
+    {"file": "coelophysis-art-1.jpg", "w": 1400, "h": 669, "kind": "Artwork", "alt": "How it might have looked at home, among cycads and ferns. The colors are a guess.", "by": "Made for this site"},
+    {"file": "coelophysis-art-2.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Up close.", "by": "Made for this site"},
+    {"file": "coelophysis-art-3.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Face to face.", "by": "Made for this site"},
+    {"file": "coelophysis-art-4.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Looking back.", "by": "Made for this site"},
     {"file": "coelophysis-1.jpg", "w": 1280, "h": 449, "kind": "Artwork", "alt": "How a National Park Service artist pictures it. The bar is 50 cm, about 20 inches.", "by": "Jeff Martz, National Park Service", "lic": "Public domain", "licurl": "", "page": "https://commons.wikimedia.org/wiki/File:Coelophysis_Jeff_Martz.jpg", "cut": true},
     {"file": "coelophysis-2.jpg", "w": 1280, "h": 658, "kind": "Skeleton", "alt": "A mounted skeleton.", "by": "James St. John", "lic": "CC BY 2.0", "licurl": "https://creativecommons.org/licenses/by/2.0", "page": "https://commons.wikimedia.org/wiki/File:Coelophysis_bauri_mount.jpg"},
     {"file": "coelophysis-3.jpg", "w": 1280, "h": 960, "kind": "Skeleton", "alt": "A skeleton at the Perot Museum in Dallas.", "by": "bryan...", "lic": "CC BY-SA 2.0", "licurl": "https://creativecommons.org/licenses/by-sa/2.0", "page": "https://commons.wikimedia.org/wiki/File:Coelophysis_skeleton.jpg"},
