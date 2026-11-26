@@ -70,6 +70,10 @@ const PHOTOS = {
     {"file": "allosaurus-6.jpg", "w": 1280, "h": 888, "kind": "Artwork", "alt": "A young Allosaurus.", "by": "Fred Wierum", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:Allosaurus_Juvenile_Reconstruction.jpg", "cut": true}
   ],
   brachiosaurus: [
+    {"file": "brachiosaurus-art-1.jpg", "w": 1400, "h": 933, "kind": "Artwork", "alt": "How it might have looked at home, among conifers and ferns. The colors are a guess.", "by": "Made for this site"},
+    {"file": "brachiosaurus-art-2.jpg", "w": 1400, "h": 933, "kind": "Artwork", "alt": "Up close.", "by": "Made for this site"},
+    {"file": "brachiosaurus-art-3.jpg", "w": 560, "h": 1536, "kind": "Artwork", "alt": "Face to face, and looking up.", "by": "Made for this site"},
+    {"file": "brachiosaurus-art-4.jpg", "w": 1199, "h": 1312, "kind": "Artwork", "alt": "Looking back.", "by": "Made for this site"},
     {"file": "brachiosaurus-1.jpg", "w": 1280, "h": 927, "kind": "Artwork", "alt": "How one artist pictures it.", "by": "Charles Nye", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:Brachiosaurus_altithorax_side_profile.png", "cut": true},
     {"file": "brachiosaurus-2.jpg", "w": 1147, "h": 960, "kind": "Skeleton", "alt": "A full-size copy that stood outside the Field Museum, Chicago.", "by": "Matt Wedel", "lic": "CC BY 3.0", "licurl": "https://creativecommons.org/licenses/by/3.0", "page": "https://commons.wikimedia.org/wiki/File:Brachiosaurus_mount.jpg", "cut": true},
     {"file": "brachiosaurus-3.jpg", "w": 1280, "h": 959, "kind": "Skeleton", "alt": "The same skeleton against the Chicago skyline.", "by": "AStrangerintheAlps", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:FMNH_Brachiosaurus.JPG"},

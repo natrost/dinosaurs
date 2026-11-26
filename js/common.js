@@ -207,7 +207,8 @@ const HERO_ART = {
   coelophysis: { src: "images/hero/coelophysis.webp", w: 1082, h: 1116, at: [230, 306, 1038, 1071], print: "images/hero/print-coelophysis.webp" },
   dilophosaurus: { src: "images/hero/dilophosaurus.webp", w: 1076, h: 1229, at: [340, 330, 918, 1049] },
   stegosaurus: { src: "images/hero/stegosaurus.webp", w: 1043, h: 1085, at: [250, 382, 958, 997] },
-  allosaurus: { src: "images/hero/allosaurus.webp", w: 1062, h: 1108, at: [230, 326, 1008, 1052] }
+  allosaurus: { src: "images/hero/allosaurus.webp", w: 1062, h: 1108, at: [230, 326, 1008, 1052] },
+  brachiosaurus: { src: "images/hero/brachiosaurus.webp", w: 1035, h: 1226, at: [300, 300, 909, 1077] }
 };
 // Each period has a pair of plants (PLANTS, in common.js).
 // Checked against what's been found in (or close to) the rocks each dinosaur comes from, so some have their own pair.
