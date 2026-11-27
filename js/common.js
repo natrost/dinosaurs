@@ -210,7 +210,7 @@ const HERO_ART = {
   allosaurus: { src: "images/hero/allosaurus.webp", w: 1062, h: 1108, at: [230, 326, 1008, 1052] },
   brachiosaurus: { src: "images/hero/brachiosaurus.webp", w: 1035, h: 1226, at: [300, 300, 909, 1077] },
   plateosaurus: { src: "images/hero/plateosaurus.webp", w: 1103, h: 1273, at: [300, 328, 909, 1049] },
-  diplodocus: { src: "images/hero/diplodocus.webp", w: 1096, h: 468, at: [60, 813, 1320, 564] },
+  diplodocus: { src: "images/hero/diplodocus.webp", w: 1205, h: 1107, at: [170, 347, 1121, 1030] },
   archaeopteryx: { src: "images/hero/archaeopteryx.webp", w: 1063, h: 1018, at: [220, 377, 1044, 1000] }
 };
 // Each period has a pair of plants (PLANTS, in common.js).
