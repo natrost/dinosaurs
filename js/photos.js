@@ -32,6 +32,10 @@ const PHOTOS = {
     {"file": "coelophysis-5.jpg", "w": 1280, "h": 785, "kind": "Fossil", "alt": "A copy of a nearly complete skeleton, curled as it was found.", "by": "Thomas Quine", "lic": "CC BY 2.0", "licurl": "https://creativecommons.org/licenses/by/2.0", "page": "https://commons.wikimedia.org/wiki/File:Coelophysis_cast.jpg"}
   ],
   plateosaurus: [
+    {"file": "plateosaurus-art-1.jpg", "w": 1400, "h": 788, "kind": "Artwork", "alt": "How it might have looked at home, in a dry land of ferns and conifers. The colors are a guess.", "by": "Made for this site"},
+    {"file": "plateosaurus-art-2.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Up close.", "by": "Made for this site"},
+    {"file": "plateosaurus-art-3.jpg", "w": 1122, "h": 1372, "kind": "Artwork", "alt": "Face to face.", "by": "Made for this site"},
+    {"file": "plateosaurus-art-4.jpg", "w": 1122, "h": 1359, "kind": "Artwork", "alt": "Looking back.", "by": "Made for this site"},
     {"file": "plateosaurus-1.jpg", "w": 1280, "h": 608, "kind": "Skeleton", "alt": "A skeleton in Tübingen, Germany, reaching down.", "by": "FunkMonk", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:Plateosaurus_Skelett_1.jpg"},
     {"file": "plateosaurus-2.jpg", "w": 945, "h": 960, "kind": "Fossil", "alt": "A skeleton still in the rock, from Frick, Switzerland.", "by": "FunkMonk", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:Plateosaurus_MSF23.jpg"},
     {"file": "plateosaurus-3.jpg", "w": 1280, "h": 768, "kind": "Skull", "alt": "A copy of a skull.", "by": "philosophygeek", "lic": "CC BY-SA 2.0", "licurl": "https://creativecommons.org/licenses/by-sa/2.0", "page": "https://commons.wikimedia.org/wiki/File:Plateosaurus_skull_(1).jpg", "cut": true},
@@ -81,6 +85,10 @@ const PHOTOS = {
     {"file": "brachiosaurus-5.jpg", "w": 656, "h": 960, "kind": "Skeleton", "alt": "A copy towering over travelers at an airport.", "by": "James St. John", "lic": "CC BY 2.0", "licurl": "https://creativecommons.org/licenses/by/2.0", "page": "https://commons.wikimedia.org/wiki/File:Brachiosaurus_altithorax.jpg"}
   ],
   diplodocus: [
+    {"file": "diplodocus-art-1.jpg", "w": 1400, "h": 788, "kind": "Artwork", "alt": "How it might have looked at home, by the water among conifers and ferns. The colors are a guess.", "by": "Made for this site"},
+    {"file": "diplodocus-art-2.jpg", "w": 1122, "h": 1402, "kind": "Artwork", "alt": "Up close.", "by": "Made for this site"},
+    {"file": "diplodocus-art-3.jpg", "w": 1122, "h": 591, "kind": "Artwork", "alt": "Face to face.", "by": "Made for this site"},
+    {"file": "diplodocus-art-4.jpg", "w": 1122, "h": 700, "kind": "Artwork", "alt": "Looking back.", "by": "Made for this site"},
     {"file": "diplodocus-1.jpg", "w": 1280, "h": 615, "kind": "Artwork", "alt": "How one artist pictures it, spines and all.", "by": "Fred Wierum", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:Diplodocus_carnegii.jpg", "cut": true},
     {"file": "diplodocus-2.jpg", "w": 1280, "h": 848, "kind": "Skeleton", "alt": "A skeleton at the Carnegie Museum in Pittsburgh.", "by": "ScottRobertAnselmo", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:CM_Diplodocus.jpg"},
     {"file": "diplodocus-3.jpg", "w": 1280, "h": 853, "kind": "Skeleton", "alt": "A skeleton in the great hall of Berlin’s natural history museum.", "by": "Dosseman", "lic": "CC BY-SA 4.0", "licurl": "https://creativecommons.org/licenses/by-sa/4.0", "page": "https://commons.wikimedia.org/wiki/File:Diplodocus_Carnegii_skeleton_in_Museum_f%C3%BCr_Naturkunde_Berlin_0864.jpg"},
@@ -88,6 +96,10 @@ const PHOTOS = {
     {"file": "diplodocus-5.jpg", "w": 1280, "h": 872, "kind": "Skeleton", "alt": "A copy in Paris, seen from above.", "by": "Ilja Nieuwland", "lic": "CC BY 3.0", "licurl": "https://creativecommons.org/licenses/by/3.0", "page": "https://commons.wikimedia.org/wiki/File:Diplodocus_paris.jpg"}
   ],
   archaeopteryx: [
+    {"file": "archaeopteryx-art-1.jpg", "w": 1400, "h": 788, "kind": "Artwork", "alt": "How it might have looked at home, on an island by a lagoon. The colors are a guess.", "by": "Made for this site"},
+    {"file": "archaeopteryx-art-2.jpg", "w": 1400, "h": 1050, "kind": "Artwork", "alt": "Up close. It had teeth, unlike birds today.", "by": "Made for this site"},
+    {"file": "archaeopteryx-art-3.jpg", "w": 1122, "h": 1137, "kind": "Artwork", "alt": "Face to face. You can see the claws on its wings.", "by": "Made for this site"},
+    {"file": "archaeopteryx-art-4.jpg", "w": 1400, "h": 960, "kind": "Artwork", "alt": "Looking back, wings spread.", "by": "Made for this site"},
     {"file": "archaeopteryx-1.jpg", "w": 710, "h": 960, "kind": "Fossil", "alt": "The famous Berlin fossil. Look for the feathers.", "by": "H. Raab", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:Archaeopteryx_lithographica_(Berlin_specimen).jpg"},
     {"file": "archaeopteryx-2.jpg", "w": 1280, "h": 930, "kind": "Artwork", "alt": "Chasing a small Compsognathus at night.", "by": "Durbed", "lic": "CC BY-SA 3.0", "licurl": "https://creativecommons.org/licenses/by-sa/3.0", "page": "https://commons.wikimedia.org/wiki/File:Archaeopteryx_lithographica_by_durbed.jpg"},
     {"file": "archaeopteryx-3.jpg", "w": 1280, "h": 870, "kind": "Skeleton", "alt": "A skeleton posed in flight.", "by": "Ryan Schwark", "lic": "CC0", "licurl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en", "page": "https://commons.wikimedia.org/wiki/File:Archaeopteryx_in_flight_at_AMNH.jpg"},

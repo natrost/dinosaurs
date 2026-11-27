@@ -11,7 +11,10 @@ const SIZE_ART = {
   dilophosaurus: { src: "images/side/dilophosaurus.webp", w: 1200, h: 516, span: .96 },
   stegosaurus: { src: "images/side/stegosaurus.webp", w: 1200, h: 580, span: .96 },
   allosaurus: { src: "images/side/allosaurus.webp", w: 1200, h: 524, span: .96 },
-  brachiosaurus: { src: "images/side/brachiosaurus.webp", w: 1200, h: 807, span: .96 }
+  brachiosaurus: { src: "images/side/brachiosaurus.webp", w: 1200, h: 807, span: .96 },
+  plateosaurus: { src: "images/side/plateosaurus.webp", w: 1200, h: 545, span: .96 },
+  diplodocus: { src: "images/side/diplodocus.webp", w: 1200, h: 240, span: .96 },
+  archaeopteryx: { src: "images/side/archaeopteryx.webp", w: 1200, h: 579, span: .96 }
 };
 function sizeArt(d, color) {
   const art = SIZE_ART[d.id];
